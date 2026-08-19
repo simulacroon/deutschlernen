@@ -1,0 +1,4069 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+>
+
+<title>Deutsch · Die Wochentage</title>
+
+<style>
+
+:root {
+
+    --ink: #171717;
+    --paper: #fffdf5;
+
+    --pink: #ff9bc8;
+    --yellow: #ffd23f;
+    --green: #66cf70;
+    --orange: #ff6b35;
+    --blue: #4bb7e8;
+    --violet: #9878ff;
+
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    background: var(--paper);
+    color: var(--ink);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow: hidden;
+
+}
+
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+
+button {
+    color: inherit;
+}
+
+
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
+.tabs {
+
+    position: fixed;
+
+    z-index: 20;
+
+    top: 18px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    gap: 7px;
+
+    max-width:
+        calc(100vw - 24px);
+
+    padding: 7px;
+
+    overflow-x: auto;
+
+    background: white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 999px;
+
+    box-shadow:
+        4px
+        4px
+        0
+        var(--ink);
+
+}
+
+
+.tab {
+
+    padding:
+        9px
+        15px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: transparent;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+}
+
+
+.tab.active {
+
+    background: var(--ink);
+    color: white;
+
+}
+
+
+/* =====================================================
+   PESTAÑAS
+===================================================== */
+
+.view {
+
+    display: none;
+
+    width: 100%;
+    height: 100vh;
+
+    padding:
+        105px
+        max(24px, 6vw)
+        70px;
+
+    overflow-y: auto;
+
+}
+
+
+.view.active {
+    display: block;
+}
+
+
+.view::after {
+
+    content: "";
+
+    display: block;
+
+    height: 30px;
+
+}
+
+
+.eyebrow {
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: .16em;
+
+    text-transform: uppercase;
+
+}
+
+
+.section-title {
+
+    margin:
+        .12em
+        0;
+
+    font-size:
+        clamp(
+            54px,
+            9vw,
+            130px
+        );
+
+    line-height: .82;
+
+    letter-spacing: -.07em;
+
+}
+
+
+/* =====================================================
+   PORTADA
+===================================================== */
+
+.hero {
+
+    min-height:
+        calc(100vh - 175px);
+
+    display: grid;
+
+    grid-template-columns:
+        1.1fr
+        .9fr;
+
+    align-items: center;
+
+    gap: 6vw;
+
+}
+
+
+.hero h1 {
+
+    margin:
+        .12em
+        0;
+
+    font-size:
+        clamp(
+            54px,
+            9vw,
+            130px
+        );
+
+    line-height: .82;
+
+    letter-spacing: -.07em;
+
+}
+
+
+.hero p {
+
+    max-width: 650px;
+
+    font-size:
+        clamp(
+            18px,
+            2vw,
+            28px
+        );
+
+}
+
+
+.blob {
+
+    position: relative;
+
+    min-height: 430px;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    background: var(--yellow);
+
+    border:
+        3px
+        solid
+        var(--ink);
+
+    border-radius:
+        46% 54% 37% 63% /
+        55% 33% 67% 45%;
+
+    box-shadow:
+        12px
+        12px
+        0
+        var(--ink);
+
+}
+
+
+.blob svg {
+
+    width: 84%;
+
+    height: auto;
+
+}
+
+
+.start {
+
+    padding:
+        14px
+        20px;
+
+    background: var(--pink);
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 999px;
+
+    box-shadow:
+        4px
+        4px
+        0
+        var(--ink);
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+}
+
+
+.start:active,
+.card button:active {
+
+    transform:
+        translate(
+            3px,
+            3px
+        );
+
+    box-shadow: none;
+
+}
+
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            12,
+            1fr
+        );
+
+    gap: 18px;
+
+    margin-top: 32px;
+
+}
+
+
+.card {
+
+    grid-column: span 4;
+
+    padding: 24px;
+
+    background: white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 25px;
+
+    box-shadow:
+        6px
+        6px
+        0
+        var(--ink);
+
+}
+
+
+.card.wide {
+    grid-column: span 8;
+}
+
+
+.card.full {
+    grid-column: 1 / -1;
+}
+
+
+.card h2,
+.card h3 {
+    margin-top: 0;
+}
+
+
+.card button,
+.choices button {
+
+    padding:
+        12px
+        18px;
+
+    background: white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 999px;
+
+    box-shadow:
+        3px
+        3px
+        0
+        var(--ink);
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+.note {
+    opacity: .62;
+}
+
+
+.big {
+
+    font-size:
+        clamp(
+            34px,
+            5vw,
+            70px
+        );
+
+    font-weight: 900;
+
+    line-height: 1;
+
+}
+
+
+.translation {
+
+    font-size: 16px;
+
+    opacity: .6;
+
+}
+
+
+.yellow {
+    background: var(--yellow);
+}
+
+
+.pink {
+    background: var(--pink);
+}
+
+
+.green {
+    background: var(--green);
+}
+
+
+.blue {
+    background: var(--blue);
+}
+
+
+.orange {
+    background: var(--orange);
+}
+
+
+.violet {
+
+    background: var(--violet);
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   VIDEOS
+===================================================== */
+
+.video {
+
+    width: 100%;
+
+    aspect-ratio:
+        16 / 9;
+
+    overflow: hidden;
+
+    background: #111;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 20px;
+
+}
+
+
+.video iframe {
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+
+}
+
+
+.video-placeholder {
+
+    min-height: 260px;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 20px;
+
+    border:
+        2px
+        dashed
+        var(--ink);
+
+    border-radius: 20px;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   LETRAS DE LAS CANCIONES
+===================================================== */
+
+.lyrics-header {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.lyrics-header h2 {
+
+    margin:
+        8px
+        0
+        0;
+
+    font-size:
+        clamp(
+            32px,
+            5vw,
+            70px
+        );
+
+}
+
+
+.lyrics-content {
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap: 18px;
+
+    margin-top: 28px;
+
+}
+
+
+.lyrics-content:not([hidden]) {
+    display: grid;
+}
+
+
+.lyrics-column {
+
+    min-height: 300px;
+
+    padding: 28px;
+
+    background: var(--yellow);
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 22px;
+
+}
+
+
+.lyrics-column.translation-column {
+    background: var(--pink);
+}
+
+
+.lyrics-column h3 {
+
+    margin-top: 0;
+
+    font-size: 25px;
+
+}
+
+
+.lyrics-column p {
+
+    margin-bottom: 0;
+
+    font-size:
+        clamp(
+            20px,
+            2.2vw,
+            32px
+        );
+
+    line-height: 1.6;
+
+}
+
+
+.lyrics-help {
+
+    padding:
+        14px
+        18px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .55
+        );
+
+    border:
+        2px
+        dashed
+        var(--ink);
+
+    border-radius: 15px;
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   DIE ZEIT
+===================================================== */
+
+.timeline {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap: 16px;
+
+}
+
+
+.time-word {
+
+    padding:
+        28px
+        12px;
+
+    background: white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 20px;
+
+    text-align: center;
+
+}
+
+
+.time-word strong {
+
+    display: block;
+
+    font-size:
+        clamp(
+            30px,
+            4vw,
+            60px
+        );
+
+}
+
+
+.sentence {
+
+    font-size:
+        clamp(
+            28px,
+            4vw,
+            56px
+        );
+
+    font-weight: 800;
+
+}
+
+
+.blank {
+
+    display: inline-block;
+
+    min-width: 180px;
+
+    color: var(--violet);
+
+    border-bottom:
+        4px
+        solid
+        var(--ink);
+
+    cursor: pointer;
+
+}
+
+
+#todaySelect {
+
+    width: 100%;
+
+    padding: 12px;
+
+    background: white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 12px;
+
+}
+
+
+/* =====================================================
+   DÍAS DE LA SEMANA
+===================================================== */
+
+.days {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            7,
+            1fr
+        );
+
+    gap: 10px;
+
+}
+
+
+.day {
+
+    min-height: 180px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 18px;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.day:hover {
+
+    transform:
+        translateY(-7px);
+
+}
+
+
+.day .icon {
+    font-size: 55px;
+}
+
+
+.day strong {
+    font-size: 20px;
+}
+
+
+.day small {
+
+    opacity: 0;
+
+    transition: .2s;
+
+}
+
+
+.day.revealed small {
+    opacity: 1;
+}
+
+
+.day:nth-child(7n + 1) {
+    background: var(--pink);
+}
+
+
+.day:nth-child(7n + 2) {
+    background: var(--yellow);
+}
+
+
+.day:nth-child(7n + 3) {
+    background: var(--green);
+}
+
+
+.day:nth-child(7n + 4) {
+    background: var(--orange);
+}
+
+
+.day:nth-child(7n + 5) {
+    background: var(--blue);
+}
+
+
+.day:nth-child(7n + 6) {
+
+    background: var(--violet);
+
+    color: white;
+
+}
+
+
+.day:nth-child(7n) {
+    background: #ff8a8a;
+}
+
+
+/* =====================================================
+   JUEGO
+===================================================== */
+
+.quiz-box {
+    text-align: center;
+}
+
+
+.quiz-prompt {
+
+    margin:
+        18px
+        0;
+
+    font-size:
+        clamp(
+            30px,
+            5vw,
+            72px
+        );
+
+    font-weight: 900;
+
+}
+
+
+.choices {
+
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 10px;
+
+}
+
+
+.feedback {
+
+    min-height: 32px;
+
+    margin:
+        20px
+        0
+        0;
+
+    font-weight: 900;
+
+}
+
+
+.spell-output {
+
+    min-height: 70px;
+
+    font-size:
+        clamp(
+            28px,
+            4vw,
+            54px
+        );
+
+    font-weight: 900;
+
+    letter-spacing: .12em;
+
+}
+
+
+.letter-highlight {
+
+    padding:
+        2px
+        6px;
+
+    background: var(--yellow);
+
+    border-radius: 8px;
+
+}
+
+
+/* =====================================================
+   SALUDOS
+===================================================== */
+
+.greetings {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap: 12px;
+
+}
+
+
+.greeting {
+
+    min-height: 260px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+}
+
+
+.sky-icon {
+    font-size: 75px;
+}
+
+
+.greeting strong {
+    font-size: 24px;
+}
+
+
+.greeting span {
+    opacity: 0;
+}
+
+
+.greeting.revealed span {
+    opacity: .65;
+}
+
+
+.dialogue {
+
+    font-size:
+        clamp(
+            24px,
+            3vw,
+            44px
+        );
+
+    line-height: 1.35;
+
+}
+
+
+/* =====================================================
+   EJERCICIO ANIMADO DE SALUDOS
+===================================================== */
+
+.greeting-game {
+
+    display: grid;
+
+    grid-template-columns:
+        1.2fr
+        .8fr;
+
+    align-items: stretch;
+
+    gap: 18px;
+
+}
+
+
+.sky-scene {
+
+    position: relative;
+
+    min-height: 430px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            #83d8ff 0 68%,
+            #f5c48a 68%
+        );
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 25px;
+
+    transition:
+        background
+        .7s;
+
+}
+
+
+/* Ciudad */
+
+.sky-scene::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 30%;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            #25273b 0 9%,
+            transparent 9% 12%,
+
+            #383a52 12% 25%,
+            transparent 25% 29%,
+
+            #202238 29% 43%,
+            transparent 43% 47%,
+
+            #45475c 47% 62%,
+            transparent 62% 66%,
+
+            #25273b 66% 82%,
+            transparent 82% 86%,
+
+            #383a52 86%
+        );
+
+    clip-path:
+        polygon(
+            0 28%,
+            8% 28%,
+            8% 10%,
+            18% 10%,
+            18% 45%,
+            30% 45%,
+            30% 0,
+            42% 0,
+            42% 32%,
+            55% 32%,
+            55% 16%,
+            70% 16%,
+            70% 40%,
+            84% 40%,
+            84% 5%,
+            94% 5%,
+            94% 31%,
+            100% 31%,
+            100% 100%,
+            0 100%
+        );
+
+}
+
+
+/* Sol y luna */
+
+.celestial {
+
+    position: absolute;
+
+    z-index: 2;
+
+    left: 50%;
+
+    width: 110px;
+    height: 110px;
+
+    background: var(--yellow);
+
+    border:
+        3px
+        solid
+        var(--ink);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0
+        0
+        0
+        18px
+        rgba(
+            255,
+            210,
+            63,
+            .25
+        );
+
+    transform:
+        translateX(-50%);
+
+    transition:
+        all
+        .8s
+        cubic-bezier(
+            .2,
+            .8,
+            .2,
+            1
+        );
+
+}
+
+
+/* Mañana */
+
+.sky-scene.morning .celestial {
+    top: 63%;
+}
+
+
+/* Día */
+
+.sky-scene.day .celestial {
+    top: 12%;
+}
+
+
+/* Atardecer */
+
+.sky-scene.evening {
+
+    background:
+        linear-gradient(
+            #ff8d75,
+            #ffc665 68%,
+            #674f77 68%
+        );
+
+}
+
+
+.sky-scene.evening .celestial {
+
+    top: 57%;
+
+    background: #ff7a32;
+
+}
+
+
+/* Noche */
+
+.sky-scene.night {
+
+    background:
+        linear-gradient(
+            #141a43 0 68%,
+            #202238 68%
+        );
+
+}
+
+
+.sky-scene.night .celestial {
+
+    top: 16%;
+
+    background: #fff6c9;
+
+    box-shadow:
+        18px
+        -8px
+        0
+        0
+        #141a43,
+
+        0
+        0
+        0
+        18px
+        rgba(
+            255,
+            246,
+            201,
+            .12
+        );
+
+}
+
+
+.scene-label {
+
+    position: absolute;
+
+    z-index: 4;
+
+    top: 18px;
+    left: 20px;
+
+    padding:
+        8px
+        12px;
+
+    background: white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 999px;
+
+    font-weight: 900;
+
+}
+
+
+.greeting-quiz {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 28px;
+
+    background: var(--pink);
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 25px;
+
+    box-shadow:
+        6px
+        6px
+        0
+        var(--ink);
+
+}
+
+
+.greeting-choices {
+
+    display: grid;
+
+    gap: 10px;
+
+}
+
+
+.greeting-choices button {
+
+    padding: 14px;
+
+    background: white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 999px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+}
+
+
+.greeting-feedback {
+
+    min-height: 58px;
+
+    font-size: 20px;
+    font-weight: 900;
+
+}
+
+
+.greeting-score {
+
+    margin-top: 16px;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   W-FRAGEN
+===================================================== */
+
+.w-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap: 14px;
+
+}
+
+
+.w-card {
+
+    min-height: 190px;
+
+    padding: 20px;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 22px;
+
+    cursor: pointer;
+
+}
+
+
+.w-card b {
+
+    display: block;
+
+    font-size:
+        clamp(
+            30px,
+            4vw,
+            58px
+        );
+
+}
+
+
+.w-card .pic {
+
+    float: right;
+
+    font-size: 52px;
+
+}
+
+
+.w-card p {
+    opacity: 0;
+}
+
+
+.w-card.revealed p {
+    opacity: 1;
+}
+
+
+.footer-tip {
+
+    position: fixed;
+
+    z-index: 30;
+
+    right: 18px;
+    bottom: 15px;
+
+    padding:
+        8px
+        12px;
+
+    background: white;
+
+    border:
+        1px
+        solid
+        var(--ink);
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    body {
+        overflow: auto;
+    }
+
+
+    .hero,
+    .greeting-game {
+        grid-template-columns: 1fr;
+    }
+
+
+    .blob {
+        min-height: 320px;
+    }
+
+
+    .card,
+    .card.wide {
+        grid-column: 1 / -1;
+    }
+
+
+    .days {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+
+    .greetings,
+    .w-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+
+    .timeline,
+    .lyrics-content:not([hidden]) {
+        grid-template-columns: 1fr;
+    }
+
+
+    .lyrics-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .view {
+        padding-inline: 20px;
+    }
+
+
+    .footer-tip {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .greetings,
+    .w-grid,
+    .days {
+        grid-template-columns: 1fr;
+    }
+
+
+    .tabs {
+
+        right: 12px;
+        left: 12px;
+
+        transform: none;
+
+    }
+
+
+    .hero h1,
+    .section-title {
+        font-size: 52px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVEGACIÓN
+===================================================== -->
+
+<nav
+    class="tabs"
+    aria-label="Unterricht"
+>
+
+    <button
+        class="tab active"
+        data-view="start"
+    >
+        START
+    </button>
+
+
+    <button
+        class="tab"
+        data-view="zeit"
+    >
+        DIE ZEIT
+    </button>
+
+
+    <button
+        class="tab"
+        data-view="tage"
+    >
+        WOCHENTAGE
+    </button>
+
+
+    <button
+        class="tab"
+        data-view="spiel"
+    >
+        SPIEL
+    </button>
+
+
+    <button
+        class="tab"
+        data-view="gruss"
+    >
+        BEGRÜSSUNG
+    </button>
+
+
+    <button
+        class="tab"
+        data-view="fragen"
+    >
+        W-FRAGEN
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     START
+===================================================== -->
+
+<section
+    class="view active"
+    id="start"
+>
+
+    <div class="hero">
+
+
+        <div>
+
+            <div class="eyebrow">
+                Deutsch · Lektion 02
+            </div>
+
+
+            <h1>
+
+                Die Woche
+
+                <br>
+
+                klingt bunt!
+
+            </h1>
+
+
+            <p>
+
+                Wir singen, erinnern uns an die
+                Wochentage und lernen Begrüßungen
+                und W-Fragen.
+
+            </p>
+
+
+            <button
+                class="start"
+                data-go="zeit"
+            >
+                UNTERRICHT STARTEN →
+            </button>
+
+        </div>
+
+
+        <div
+            class="blob"
+            aria-label="Figuras musicales coloridas"
+        >
+
+            <svg
+                viewBox="0 0 620 470"
+                role="img"
+            >
+
+                <g
+                    stroke="#171717"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                >
+
+                    <path
+                        fill="#ff9bc8"
+                        d="M50 313C8 213 79 113 185 143c67 19 92 97 56 158-38 65-155 99-191 12Z"
+                    />
+
+
+                    <path
+                        fill="#66cf70"
+                        d="m309 55 38 79 86-15-38 78 69 53-86 17 5 87-75-46-64 59-12-87-87-2 58-66-55-67 87 12Z"
+                    />
+
+
+                    <path
+                        fill="#4bb7e8"
+                        d="M455 171c92-26 157 55 124 137-23 59-104 84-157 47-55-38-42-163 33-184Z"
+                    />
+
+
+                    <circle
+                        cx="145"
+                        cy="246"
+                        r="12"
+                        fill="#171717"
+                    />
+
+
+                    <circle
+                        cx="184"
+                        cy="234"
+                        r="12"
+                        fill="#171717"
+                    />
+
+
+                    <path
+                        d="M140 283q30 25 57-5"
+                        fill="none"
+                    />
+
+
+                    <circle
+                        cx="286"
+                        cy="220"
+                        r="12"
+                        fill="#171717"
+                    />
+
+
+                    <circle
+                        cx="337"
+                        cy="220"
+                        r="12"
+                        fill="#171717"
+                    />
+
+
+                    <path
+                        d="M285 257q28 25 55 0"
+                        fill="none"
+                    />
+
+
+                    <circle
+                        cx="489"
+                        cy="254"
+                        r="12"
+                        fill="#171717"
+                    />
+
+
+                    <circle
+                        cx="533"
+                        cy="254"
+                        r="12"
+                        fill="#171717"
+                    />
+
+
+                    <path
+                        d="M487 294q25 19 51-2"
+                        fill="none"
+                    />
+
+
+                    <path
+                        d="M104 171q28-51 74-9M269 129q37-53 84 0M464 193q35-49 79 2"
+                        fill="none"
+                    />
+
+
+                    <path
+                        d="M505 118v-43l31 16-31 13"
+                        fill="none"
+                    />
+
+                </g>
+
+            </svg>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <!-- VIDEO DE LA CANCIÓN -->
+
+        <article class="card full">
+
+            <h2>
+                ♫ Unser Wochenlied
+            </h2>
+
+
+            <div class="video">
+
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/3P_j7tkf0w8"
+                    title="Lied: Wochentage"
+                    allowfullscreen
+                ></iframe>
+
+            </div>
+
+        </article>
+
+
+        <!-- LETRA DE LA CANCIÓN -->
+
+        <article class="card full lyrics-card">
+
+            <div class="lyrics-header">
+
+
+                <div>
+
+                    <div class="eyebrow">
+                        Mitsingen · cantar juntos
+                    </div>
+
+
+                    <h2>
+                        Liedtext
+                    </h2>
+
+                </div>
+
+
+                <button id="toggleLyrics">
+                    LIEDTEXT ZEIGEN
+                </button>
+
+            </div>
+
+
+            <div
+                class="lyrics-content"
+                id="lyricsContent"
+                hidden
+            >
+
+
+                <!-- LETRA EN ALEMÁN -->
+
+                <div class="lyrics-column">
+
+                    <h3>
+                        Deutsch
+                    </h3>
+
+
+                    <p class="lyrics-help">
+
+                        <!-- ===================================
+                             PEGA AQUÍ LA LETRA EN ALEMÁN
+                        ==================================== -->
+
+                        Lass mich <br><br>
+
+                        He lass mich <br><br>
+                    
+
+                        Ich will nicht <br><br>
+
+                        He lass mich <br><br>
+
+                        nichts <br><br>
+                        
+                        ich will nichts 
+
+                        <br><br>
+
+                        Ich will dich <br><br>
+
+                        Ich will dich <br><br>
+
+                        Ich mag dich <br><br>
+
+                        und ich will dich <br><br>
+
+                        ich will Liebe <br><br>
+
+                        ich will Liebe <br><br>
+
+                        brauch Liebe <br><br>
+                        
+                        ich brauch Liebe <br><br>
+
+                        ich will Sex <br><br>
+
+                        ich will Sex <br><br>
+
+                        ich mag Sex <br><br>
+
+                        und ich will Sex <br><br>
+
+                        ich will dich <br><br>
+
+                        ich will dich <br><br>
+
+                        ich lieb dich <br><br>
+
+                        ich will dich
+
+
+                        <br><br>
+                        schief auf <br><br>
+                        ich schau schief auf <br><br>
+
+                        Sex <br><br>
+
+                        will keinen Sex <br><br>
+
+                        Liebe <br><br>
+
+                        brauch keine Liebe <br><br>
+
+                        Lass mich <br><br>
+
+                        He lass mich
+
+                        <br><br>
+
+                        Ich will dich <br><br>
+
+                        Ich will dich <br><br>
+
+                        Ich mag dich <br><br>
+
+                        und ich will dich <br><br>
+
+                        ich will Liebe <br><br>
+
+                        ich will Liebe <br><br>
+
+                        brauch Liebe <br><br>
+                        
+                        ich brauch Liebe <br><br>
+
+                        ich will Sex <br><br>
+
+                        ich will Sex <br><br>
+
+                        ich mag Sex <br><br>
+
+                        und ich will Sex <br><br>
+
+                        ich will dich <br><br>
+
+                        ich will dich <br><br>
+
+                        ich lieb dich <br><br>
+
+                        ich will dich 
+
+
+                        
+
+                    </p>
+
+                </div>
+
+
+                <!-- TRADUCCIÓN -->
+
+                <div class="lyrics-column translation-column">
+
+                    <h3>
+                        Español
+                    </h3>
+
+
+                    <p class="lyrics-help">
+
+                        <!-- ===================================
+                             PEGA AQUÍ LA TRADUCCIÓN
+                        ==================================== -->
+
+                        déjame <br><br>
+
+                        he déjame <br><br>
+
+                        no quiero <br><br>
+
+                        he déjame <br><br>
+
+                        nada <br><br>
+                        
+                        no quiero nada 
+
+
+                        <br><br>
+
+                        yo te quiero a ti <br><br>
+
+                        te quiero a ti <br><br>
+
+                        me gustas <br><br>
+
+                        y te quiero <br><br>
+
+                        quiero amor <br><br>
+                        
+                        quiero amor <br><br>
+
+                        necesito amor <br><br>
+
+                        yo necesito amor... <br><br>
+
+
+                        te quiero a ti <br><br>
+                         
+                        te quiero a ti <br><br>
+
+                        te amo <br><br>
+
+                        yo te amo <br><br>
+
+
+                        <br><br>
+
+                        de reojo <br><br>
+
+                        te estoy  mirando de reojo <br><br>
+
+                        sexo <br><br>
+
+                        no quiero ningún sexo <br><br>
+
+                        amor <br><br>
+
+                        no necesito amor <br><br>
+
+                        déjame <br><br>
+
+                        he déjame 
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DIE ZEIT
+===================================================== -->
+
+<section
+    class="view"
+    id="zeit"
+>
+
+    <div class="eyebrow">
+        01 · Orientierung
+    </div>
+
+
+    <h1 class="section-title">
+        Die Zeit
+    </h1>
+
+
+    <div class="timeline">
+
+
+        <div class="time-word pink">
+
+            ←
+
+            <strong>
+                gestern
+            </strong>
+
+            ayer
+
+        </div>
+
+
+        <div class="time-word yellow">
+
+            ●
+
+            <strong>
+                heute
+            </strong>
+
+            hoy
+
+        </div>
+
+
+        <div class="time-word blue">
+
+            →
+
+            <strong>
+                morgen
+            </strong>
+
+            mañana
+
+        </div>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <article class="card wide">
+
+            <h2>
+                Was kommt davor und danach?
+            </h2>
+
+
+            <p class="sentence">
+
+                Heute ist
+
+                <b id="todayWord">
+                    Mittwoch
+                </b>.
+
+                <br>
+
+                Morgen ist
+
+                <span
+                    class="blank"
+                    data-answer="Donnerstag"
+                >
+                    ______
+                </span>.
+
+                <br>
+
+                Gestern war
+
+                <span
+                    class="blank"
+                    data-answer="Dienstag"
+                >
+                    ______
+                </span>.
+
+            </p>
+
+
+            <p class="note">
+
+                Toca los espacios para revelar
+                las respuestas.
+
+            </p>
+
+        </article>
+
+
+        <article class="card green">
+
+            <h2>
+                Deine Aufgabe
+            </h2>
+
+
+            <p>
+                Ändere den heutigen Tag:
+            </p>
+
+
+            <select id="todaySelect"></select>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WOCHENTAGE
+===================================================== -->
+
+<section
+    class="view"
+    id="tage"
+>
+
+    <div class="eyebrow">
+        02 · Wortschatz
+    </div>
+
+
+    <h1 class="section-title">
+        Die Wochentage
+    </h1>
+
+
+    <p class="big">
+
+        die Woche
+
+        <span class="translation">
+            la semana
+        </span>
+
+        <br>
+
+        der Tag
+
+        <span class="translation">
+            el día
+        </span>
+
+    </p>
+
+
+    <div
+        class="days"
+        id="dayCards"
+    ></div>
+
+
+    <div class="grid">
+
+
+        <article class="card wide orange">
+
+            <h2>
+                Das Wochenende
+            </h2>
+
+
+            <p class="big">
+                Samstag + Sonntag
+            </p>
+
+
+            <p>
+
+                <b>Woche</b>
+                (semana)
+
+                +
+
+                <b>Ende</b>
+                (final)
+
+            </p>
+
+        </article>
+
+
+        <article class="card pink">
+
+            <h2>
+                Zum Abschied
+            </h2>
+
+
+            <p>
+                Schönes Wochenende!
+            </p>
+
+
+            <p>
+
+                👋
+
+                <b>
+                    Dir auch!
+                </b>
+
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     JUEGO
+===================================================== -->
+
+<section
+    class="view"
+    id="spiel"
+>
+
+    <div class="eyebrow">
+        03 · Wiederholung
+    </div>
+
+
+    <h1 class="section-title">
+        Spielzeit!
+    </h1>
+
+
+    <div class="grid">
+
+
+        <article class="card wide quiz-box yellow">
+
+            <h2>
+                Welcher Tag ist das?
+            </h2>
+
+
+            <div
+                class="quiz-prompt"
+                id="quizPrompt"
+            ></div>
+
+
+            <div
+                class="choices"
+                id="quizChoices"
+            ></div>
+
+
+            <div
+                class="feedback"
+                id="quizFeedback"
+            ></div>
+
+
+            <button id="nextQuiz">
+                NÄCHSTE FRAGE →
+            </button>
+
+        </article>
+
+
+        <article class="card quiz-box blue">
+
+            <h2>
+                Buchstabieren
+            </h2>
+
+
+            <p
+                id="spellWord"
+                class="big"
+            ></p>
+
+
+            <div
+                id="spellOutput"
+                class="spell-output"
+            ></div>
+
+
+            <button id="spellNext">
+                NÄCHSTER BUCHSTABE
+            </button>
+
+
+            <button id="speakWord">
+                🔊 HÖREN
+            </button>
+
+        </article>
+
+
+        <article class="card full">
+
+            <h2>
+                Juego complementario · Wordwall
+            </h2>
+
+
+            <div class="video">
+
+                <iframe
+                    src="https://wordwall.net/embed/4108991"
+                    title="Wordwall: jours de la semaine"
+                    allowfullscreen
+                ></iframe>
+
+            </div>
+
+
+            <p class="note">
+
+                Este recurso está en francés.
+                El juego propio de arriba practica
+                específicamente los días en alemán.
+
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BEGRÜSSUNG
+===================================================== -->
+
+<section
+    class="view"
+    id="gruss"
+>
+
+    <div class="eyebrow">
+        04 · Sprechen
+    </div>
+
+
+    <h1 class="section-title">
+        Begrüßung
+    </h1>
+
+
+    <div class="greetings">
+
+
+        <div class="greeting yellow">
+
+            <div class="sky-icon">
+                🌅
+            </div>
+
+            <strong>
+                Guten Morgen!
+            </strong>
+
+            <span>
+                mañana
+            </span>
+
+        </div>
+
+
+        <div class="greeting blue">
+
+            <div class="sky-icon">
+                ☀️
+            </div>
+
+            <strong>
+                Guten Tag!
+            </strong>
+
+            <span>
+                día / tarde
+            </span>
+
+        </div>
+
+
+        <div class="greeting orange">
+
+            <div class="sky-icon">
+                🌇
+            </div>
+
+            <strong>
+                Guten Abend!
+            </strong>
+
+            <span>
+                atardecer
+            </span>
+
+        </div>
+
+
+        <div class="greeting violet">
+
+            <div class="sky-icon">
+                🌙
+            </div>
+
+            <strong>
+                Gute Nacht!
+            </strong>
+
+            <span>
+                noche
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <!-- EJERCICIO ANIMADO -->
+
+        <article class="card full">
+
+            <h2>
+                Welche Begrüßung passt?
+            </h2>
+
+
+            <p>
+
+                Mira la animación y escoge
+                el saludo correcto.
+
+            </p>
+
+
+            <div class="greeting-game">
+
+
+                <div
+                    class="sky-scene morning"
+                    id="skyScene"
+                >
+
+                    <span
+                        class="scene-label"
+                        id="sceneLabel"
+                    >
+                        Der Morgen · la mañana
+                    </span>
+
+
+                    <div class="celestial"></div>
+
+                </div>
+
+
+                <div class="greeting-quiz">
+
+                    <div class="eyebrow">
+                        Übung · ejercicio
+                    </div>
+
+
+                    <h3>
+                        Was sagst du?
+                    </h3>
+
+
+                    <div
+                        class="greeting-choices"
+                        id="greetingChoices"
+                    ></div>
+
+
+                    <p
+                        class="greeting-feedback"
+                        id="greetingFeedback"
+                    ></p>
+
+
+                    <button
+                        id="nextGreeting"
+                        hidden
+                    >
+                        NÄCHSTE SZENE →
+                    </button>
+
+
+                    <div
+                        class="greeting-score"
+                        id="greetingScore"
+                    >
+                        0 / 4 richtig
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CONVERSACIÓN -->
+
+        <article class="card wide">
+
+            <h2>
+                Ein kleines Gespräch
+            </h2>
+
+
+            <div class="dialogue">
+
+                👋 Hallo!
+
+                <br>
+
+                — Wie geht's dir?
+
+                <br>
+
+                — Mir geht's gut, und dir?
+
+            </div>
+
+        </article>
+
+
+        <!-- DESPEDIDA -->
+
+        <article class="card green">
+
+            <h2>
+                Abschied
+            </h2>
+
+
+            <p class="big">
+                Tschüss!
+            </p>
+
+
+            <p>
+                Auf Wiedersehen!
+            </p>
+
+        </article>
+
+
+        <!-- VIDEOS -->
+
+        <article class="card full">
+
+            <h2>
+                Videos
+            </h2>
+
+
+            <div
+                class="grid"
+                style="margin: 0"
+            >
+
+
+                <div class="card wide">
+
+                    <div class="video">
+
+                        <iframe
+                            src="https://www.youtube-nocookie.com/embed/dC6ZGLzdaTs"
+                            title="Saludos en alemán"
+                            allowfullscreen
+                        ></iframe>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card wide">
+
+                    <div class="video">
+
+                        <iframe
+                            src="https://www.youtube-nocookie.com/embed/AudwhCFqHPE"
+                            title="Alemán para principiantes"
+                            allowfullscreen
+                        ></iframe>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="video-placeholder">
+
+                        <div>
+
+                            <b>
+                                + VIDEO DE CLASE
+                            </b>
+
+                            <br>
+
+                            <span class="note">
+
+                                Espacio libre para
+                                pegar otro video.
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     W-FRAGEN
+===================================================== -->
+
+<section
+    class="view"
+    id="fragen"
+>
+
+    <div class="eyebrow">
+        05 · Grammatik
+    </div>
+
+
+    <h1 class="section-title">
+        W-Fragen
+    </h1>
+
+
+    <p>
+
+        Toca cada tarjeta para descubrir
+        el significado y escuchar
+        la pronunciación.
+
+    </p>
+
+
+    <div
+        class="w-grid"
+        id="wGrid"
+    ></div>
+
+
+    <div class="grid">
+
+        <article class="card full pink">
+
+            <h2>
+                Frage des Tages
+            </h2>
+
+
+            <p class="sentence">
+                Wann ist das Wochenende?
+            </p>
+
+
+            <button id="showFinalAnswer">
+                ANTWORT ZEIGEN
+            </button>
+
+
+            <p
+                class="sentence"
+                id="finalAnswer"
+                hidden
+            >
+                Am Samstag und Sonntag!
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<div class="footer-tip">
+
+    ← → cambiar pestaña · toca las tarjetas
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   INFORMACIÓN DE LOS DÍAS
+===================================================== */
+
+const days = [
+
+    {
+        de: "Montag",
+        es: "lunes",
+        root: "der Mond · luna",
+        icon: "🌙"
+    },
+
+    {
+        de: "Dienstag",
+        es: "martes",
+        root: "der Dienst · servicio",
+        icon: "🛠️"
+    },
+
+    {
+        de: "Mittwoch",
+        es: "miércoles",
+        root: "die Mitte · mitad",
+        icon: "➗"
+    },
+
+    {
+        de: "Donnerstag",
+        es: "jueves",
+        root: "der Donner · trueno",
+        icon: "⚡"
+    },
+
+    {
+        de: "Freitag",
+        es: "viernes",
+        root: "frei · libre",
+        icon: "🕊️"
+    },
+
+    {
+        de: "Samstag",
+        es: "sábado",
+        root: "Wochenende",
+        icon: "🎈"
+    },
+
+    {
+        de: "Sonntag",
+        es: "domingo",
+        root: "die Sonne · sol",
+        icon: "☀️"
+    }
+
+];
+
+
+/* =====================================================
+   CAMBIO DE PESTAÑAS
+===================================================== */
+
+const views =
+    [
+        ...document.querySelectorAll(
+            ".view"
+        )
+    ];
+
+
+const tabs =
+    [
+        ...document.querySelectorAll(
+            ".tab"
+        )
+    ];
+
+
+function showView(id) {
+
+    views.forEach(view => {
+
+        view.classList.toggle(
+            "active",
+            view.id === id
+        );
+
+    });
+
+
+    tabs.forEach(tab => {
+
+        tab.classList.toggle(
+            "active",
+            tab.dataset.view === id
+        );
+
+    });
+
+
+    document
+        .getElementById(id)
+        .scrollTop = 0;
+
+}
+
+
+tabs.forEach(tab => {
+
+    tab.addEventListener(
+        "click",
+        () => {
+
+            showView(
+                tab.dataset.view
+            );
+
+        }
+    );
+
+});
+
+
+document
+    .querySelectorAll(
+        "[data-go]"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                showView(
+                    button.dataset.go
+                );
+
+            }
+        );
+
+    });
+
+
+/* Navegación con flechas */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key !== "ArrowRight" &&
+            event.key !== "ArrowLeft"
+        ) {
+            return;
+        }
+
+
+        let index =
+            tabs.findIndex(
+                tab =>
+                    tab.classList.contains(
+                        "active"
+                    )
+            );
+
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+            index++;
+        } else {
+            index--;
+        }
+
+
+        index =
+            (
+                index +
+                tabs.length
+            ) %
+            tabs.length;
+
+
+        showView(
+            tabs[index].dataset.view
+        );
+
+    }
+);
+
+
+/* =====================================================
+   LETRAS DE CANCIONES
+===================================================== */
+
+const toggleLyrics =
+    document.getElementById(
+        "toggleLyrics"
+    );
+
+
+const lyricsContent =
+    document.getElementById(
+        "lyricsContent"
+    );
+
+
+toggleLyrics.addEventListener(
+    "click",
+    () => {
+
+        lyricsContent.hidden =
+            !lyricsContent.hidden;
+
+
+        if (
+            lyricsContent.hidden
+        ) {
+
+            toggleLyrics.textContent =
+                "LIEDTEXT ZEIGEN";
+
+        } else {
+
+            toggleLyrics.textContent =
+                "LIEDTEXT VERSTECKEN";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   TARJETAS DE LOS DÍAS
+===================================================== */
+
+const dayCards =
+    document.getElementById(
+        "dayCards"
+    );
+
+
+dayCards.innerHTML =
+    days.map(day => {
+
+        return `
+            <article
+                class="day"
+                tabindex="0"
+            >
+
+                <span class="icon">
+                    ${day.icon}
+                </span>
+
+                <div>
+
+                    <strong>
+                        ${day.de}
+                    </strong>
+
+                    <small>
+
+                        <br>
+
+                        ${day.es}
+
+                        <br>
+
+                        ${day.root}
+
+                    </small>
+
+                </div>
+
+            </article>
+        `;
+
+    }).join("");
+
+
+document
+    .querySelectorAll(
+        ".day"
+    )
+    .forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                card.classList.toggle(
+                    "revealed"
+                );
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   AYER, HOY Y MAÑANA
+===================================================== */
+
+const todaySelect =
+    document.getElementById(
+        "todaySelect"
+    );
+
+
+todaySelect.innerHTML =
+    days.map(
+        (day, index) => {
+
+            const selected =
+                index === 2
+                    ? "selected"
+                    : "";
+
+
+            return `
+                <option ${selected}>
+                    ${day.de}
+                </option>
+            `;
+
+        }
+    ).join("");
+
+
+todaySelect.addEventListener(
+    "change",
+    () => {
+
+        const selectedIndex =
+            days.findIndex(
+                day =>
+                    day.de ===
+                    todaySelect.value
+            );
+
+
+        document
+            .getElementById(
+                "todayWord"
+            )
+            .textContent =
+                days[selectedIndex].de;
+
+
+        const blanks =
+            document.querySelectorAll(
+                ".blank"
+            );
+
+
+        const tomorrowIndex =
+            (
+                selectedIndex + 1
+            ) % 7;
+
+
+        const yesterdayIndex =
+            (
+                selectedIndex + 6
+            ) % 7;
+
+
+        blanks[0].dataset.answer =
+            days[tomorrowIndex].de;
+
+
+        blanks[1].dataset.answer =
+            days[yesterdayIndex].de;
+
+
+        blanks.forEach(blank => {
+
+            blank.textContent =
+                "______";
+
+        });
+
+    }
+);
+
+
+document
+    .querySelectorAll(
+        ".blank"
+    )
+    .forEach(blank => {
+
+        blank.addEventListener(
+            "click",
+            () => {
+
+                blank.textContent =
+                    blank.dataset.answer;
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   PRONUNCIACIÓN
+===================================================== */
+
+function speakGerman(text) {
+
+    if (
+        !(
+            "speechSynthesis"
+            in window
+        )
+    ) {
+
+        alert(
+            "Este navegador no permite reproducir la pronunciación."
+        );
+
+        return;
+
+    }
+
+
+    /* Ajustes fonéticos especiales */
+
+    const pronunciation = {
+
+        Was: "Wass",
+
+        was: "Wass"
+
+    };
+
+
+    const spokenText =
+        pronunciation[text] ||
+        text;
+
+
+    const speech =
+        new SpeechSynthesisUtterance(
+            spokenText
+        );
+
+
+    speech.lang = "de-DE";
+
+    speech.rate = .78;
+
+
+    const germanVoice =
+        speechSynthesis
+            .getVoices()
+            .find(
+                voice =>
+                    voice.lang
+                        .toLowerCase()
+                        .startsWith("de")
+            );
+
+
+    if (germanVoice) {
+
+        speech.voice =
+            germanVoice;
+
+    }
+
+
+    speechSynthesis.cancel();
+
+    speechSynthesis.speak(
+        speech
+    );
+
+}
+
+
+/* =====================================================
+   JUEGO DE PREGUNTAS
+===================================================== */
+
+let quizIndex = 0;
+
+
+function shuffle(array) {
+
+    return [...array].sort(
+        () =>
+            Math.random() -
+            .5
+    );
+
+}
+
+
+function newQuiz() {
+
+    quizIndex =
+        Math.floor(
+            Math.random() *
+            days.length
+        );
+
+
+    const correctDay =
+        days[quizIndex];
+
+
+    document
+        .getElementById(
+            "quizPrompt"
+        )
+        .textContent =
+            `${correctDay.icon} ${correctDay.es}`;
+
+
+    document
+        .getElementById(
+            "quizFeedback"
+        )
+        .textContent = "";
+
+
+    const incorrectDays =
+        shuffle(
+            days.filter(
+                day =>
+                    day.de !==
+                    correctDay.de
+            )
+        ).slice(
+            0,
+            3
+        );
+
+
+    const options =
+        shuffle([
+            correctDay,
+            ...incorrectDays
+        ]);
+
+
+    const choices =
+        document.getElementById(
+            "quizChoices"
+        );
+
+
+    choices.innerHTML =
+        options.map(day => {
+
+            return `
+                <button>
+                    ${day.de}
+                </button>
+            `;
+
+        }).join("");
+
+
+    choices
+        .querySelectorAll(
+            "button"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const feedback =
+                        document.getElementById(
+                            "quizFeedback"
+                        );
+
+
+                    if (
+                        button
+                            .textContent
+                            .trim()
+                        ===
+                        correctDay.de
+                    ) {
+
+                        feedback.textContent =
+                            "Richtig! ✓";
+
+
+                        speakGerman(
+                            correctDay.de
+                        );
+
+                    } else {
+
+                        feedback.textContent =
+                            "Noch einmal · intenta otra vez";
+
+                    }
+
+                }
+            );
+
+        });
+
+}
+
+
+document
+    .getElementById(
+        "nextQuiz"
+    )
+    .addEventListener(
+        "click",
+        newQuiz
+    );
+
+
+newQuiz();
+
+
+/* =====================================================
+   DELETREAR
+===================================================== */
+
+let spellDay =
+    days[
+        Math.floor(
+            Math.random() *
+            days.length
+        )
+    ].de.toUpperCase();
+
+
+let spellPosition = 0;
+
+
+function drawSpelling() {
+
+    document
+        .getElementById(
+            "spellWord"
+        )
+        .textContent =
+            spellDay;
+
+
+    const letters =
+        spellDay
+            .split("")
+            .map(
+                (
+                    letter,
+                    index
+                ) => {
+
+                    if (
+                        index <
+                        spellPosition
+                    ) {
+
+                        return `
+                            <span
+                                class="letter-highlight"
+                            >
+                                ${letter}
+                            </span>
+                        `;
+
+                    }
+
+
+                    return "_";
+
+                }
+            )
+            .join(" ");
+
+
+    document
+        .getElementById(
+            "spellOutput"
+        )
+        .innerHTML =
+            letters;
+
+}
+
+
+drawSpelling();
+
+
+document
+    .getElementById(
+        "spellNext"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            spellPosition++;
+
+
+            if (
+                spellPosition >
+                spellDay.length
+            ) {
+
+                spellDay =
+                    days[
+                        Math.floor(
+                            Math.random() *
+                            days.length
+                        )
+                    ].de.toUpperCase();
+
+
+                spellPosition = 0;
+
+            }
+
+
+            drawSpelling();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "speakWord"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            speakGerman(
+                spellDay
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   TARJETAS DE SALUDOS
+===================================================== */
+
+document
+    .querySelectorAll(
+        ".greeting"
+    )
+    .forEach(greeting => {
+
+        greeting.addEventListener(
+            "click",
+            () => {
+
+                greeting
+                    .classList
+                    .toggle(
+                        "revealed"
+                    );
+
+
+                const phrase =
+                    greeting
+                        .querySelector(
+                            "strong"
+                        )
+                        .textContent
+                        .trim();
+
+
+                speakGerman(
+                    phrase
+                );
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   EJERCICIO ANIMADO DE SALUDOS
+===================================================== */
+
+const greetingScenes = [
+
+    {
+        mode: "morning",
+        label:
+            "Der Morgen · la mañana",
+        answer:
+            "Guten Morgen!"
+    },
+
+    {
+        mode: "day",
+        label:
+            "Der Tag · el día",
+        answer:
+            "Guten Tag!"
+    },
+
+    {
+        mode: "evening",
+        label:
+            "Der Abend · el atardecer",
+        answer:
+            "Guten Abend!"
+    },
+
+    {
+        mode: "night",
+        label:
+            "Die Nacht · la noche",
+        answer:
+            "Gute Nacht!"
+    }
+
+];
+
+
+const greetingAnswers =
+    greetingScenes.map(
+        scene =>
+            scene.answer
+    );
+
+
+let greetingIndex = 0;
+
+let greetingPoints = 0;
+
+let greetingAnswered = false;
+
+
+function loadGreetingScene() {
+
+    const scene =
+        greetingScenes[
+            greetingIndex
+        ];
+
+
+    const sky =
+        document.getElementById(
+            "skyScene"
+        );
+
+
+    sky.className =
+        `sky-scene ${scene.mode}`;
+
+
+    document
+        .getElementById(
+            "sceneLabel"
+        )
+        .textContent =
+            scene.label;
+
+
+    document
+        .getElementById(
+            "greetingFeedback"
+        )
+        .textContent = "";
+
+
+    document
+        .getElementById(
+            "nextGreeting"
+        )
+        .hidden = true;
+
+
+    greetingAnswered =
+        false;
+
+
+    const greetingChoices =
+        document.getElementById(
+            "greetingChoices"
+        );
+
+
+    greetingChoices.innerHTML =
+        greetingAnswers.map(
+            answer => {
+
+                return `
+                    <button>
+                        ${answer}
+                    </button>
+                `;
+
+            }
+        ).join("");
+
+
+    greetingChoices
+        .querySelectorAll(
+            "button"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    checkGreeting(
+                        button.textContent.trim()
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+function checkGreeting(answer) {
+
+    if (greetingAnswered) {
+        return;
+    }
+
+
+    greetingAnswered =
+        true;
+
+
+    const correct =
+        greetingScenes[
+            greetingIndex
+        ].answer;
+
+
+    const feedback =
+        document.getElementById(
+            "greetingFeedback"
+        );
+
+
+    if (
+        answer === correct
+    ) {
+
+        greetingPoints++;
+
+        feedback.textContent =
+            "Richtig! ✓";
+
+
+        speakGerman(
+            correct
+        );
+
+    } else {
+
+        feedback.textContent =
+            `Fast! La respuesta es: ${correct}`;
+
+
+        speakGerman(
+            correct
+        );
+
+    }
+
+
+    document
+        .getElementById(
+            "greetingScore"
+        )
+        .textContent =
+            `${greetingPoints} / 4 richtig`;
+
+
+    document
+        .getElementById(
+            "nextGreeting"
+        )
+        .hidden = false;
+
+}
+
+
+document
+    .getElementById(
+        "nextGreeting"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            greetingIndex =
+                (
+                    greetingIndex + 1
+                ) %
+                greetingScenes.length;
+
+
+            if (
+                greetingIndex === 0
+            ) {
+
+                greetingPoints = 0;
+
+            }
+
+
+            loadGreetingScene();
+
+        }
+    );
+
+
+loadGreetingScene();
+
+
+/* =====================================================
+   W-FRAGEN
+===================================================== */
+
+const questions = [
+
+    [
+        "Wo?",
+        "¿dónde?",
+        "📍",
+        "imagen: lugar"
+    ],
+
+    [
+        "Wer?",
+        "¿quién?",
+        "🧑",
+        "imagen: persona"
+    ],
+
+    [
+        "Wie?",
+        "¿cómo?",
+        "🏃",
+        "imagen: acción"
+    ],
+
+    [
+        "Was?",
+        "¿qué?",
+        "📦",
+        "imagen: cosa"
+    ],
+
+    [
+        "Wann?",
+        "¿cuándo?",
+        "🕒",
+        "imagen: reloj"
+    ],
+
+    [
+        "Warum?",
+        "¿por qué?",
+        "🤔",
+        "imagen: confusión"
+    ],
+
+    [
+        "Woher?",
+        "¿de dónde?",
+        "🌍",
+        "imagen: país"
+    ]
+
+];
+
+
+const questionColors = [
+
+    "pink",
+    "yellow",
+    "green",
+    "orange",
+    "blue",
+    "violet"
+
+];
+
+
+document
+    .getElementById(
+        "wGrid"
+    )
+    .innerHTML =
+        questions.map(
+            (
+                question,
+                index
+            ) => {
+
+                const color =
+                    questionColors[
+                        index %
+                        questionColors.length
+                    ];
+
+
+                return `
+                    <article
+                        class="w-card ${color}"
+                    >
+
+                        <span class="pic">
+                            ${question[2]}
+                        </span>
+
+                        <b>
+                            ${question[0]}
+                        </b>
+
+                        <p>
+
+                            ${question[1]}
+
+                            <br>
+
+                            <small>
+                                ${question[3]}
+                            </small>
+
+                        </p>
+
+                    </article>
+                `;
+
+            }
+        ).join("");
+
+
+document
+    .querySelectorAll(
+        ".w-card"
+    )
+    .forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                card
+                    .classList
+                    .toggle(
+                        "revealed"
+                    );
+
+
+                const question =
+                    card
+                        .querySelector("b")
+                        .textContent
+                        .trim()
+                        .replace(
+                            "?",
+                            ""
+                        );
+
+
+                speakGerman(
+                    question
+                );
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   RESPUESTA FINAL
+===================================================== */
+
+document
+    .getElementById(
+        "showFinalAnswer"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "finalAnswer"
+                )
+                .hidden = false;
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
