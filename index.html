@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1"
 >
 
-<title>Deutsch · Die Wochentage</title>
+<title>Deutsch lernen · Klasse 02</title>
 
 <style>
 
@@ -1479,6 +1479,541 @@ button {
 }
 
 
+/* =====================================================
+   NUEVAS ACTIVIDADES
+===================================================== */
+
+.lesson-block {
+    margin-top: 32px;
+}
+
+.conversation-layout {
+    display: grid;
+    grid-template-columns: .7fr 1.3fr;
+    gap: 18px;
+}
+
+.conversation-people {
+    min-height: 480px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 18px;
+    padding: 30px;
+    overflow: hidden;
+    background: var(--blue);
+    border: 2px solid var(--ink);
+    border-radius: 25px;
+}
+
+.person-shape {
+    position: relative;
+    width: 150px;
+    height: 260px;
+    display: grid;
+    place-items: start center;
+    padding-top: 35px;
+    background: var(--pink);
+    border: 3px solid var(--ink);
+    border-radius: 80px 80px 28px 28px;
+    font-size: 64px;
+}
+
+.person-shape:nth-child(2) {
+    height: 225px;
+    background: var(--yellow);
+}
+
+.person-shape span {
+    position: absolute;
+    bottom: 22px;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.dialogue-reader,
+.dialogue-exercise {
+    padding: 28px;
+    background: white;
+    border: 2px solid var(--ink);
+    border-radius: 25px;
+    box-shadow: 6px 6px 0 var(--ink);
+}
+
+.dialogue-line {
+    margin: 0 0 14px;
+    padding: 13px 17px;
+    border-radius: 18px;
+    font-size: clamp(17px, 1.8vw, 25px);
+    line-height: 1.45;
+}
+
+.dialogue-line.laura {
+    margin-right: 8%;
+    background: var(--pink);
+}
+
+.dialogue-line.karol {
+    margin-left: 8%;
+    background: var(--yellow);
+}
+
+.fill-input {
+    width: 115px;
+    padding: 4px 8px;
+    background: white;
+    border: 0;
+    border-bottom: 3px solid var(--ink);
+    outline: 0;
+    font-weight: 900;
+    text-align: center;
+}
+
+.fill-input.correct {
+    background: #c8ffd0;
+}
+
+.fill-input.wrong {
+    background: #ffc4c4;
+}
+
+.exercise-feedback {
+    min-height: 30px;
+    font-weight: 900;
+}
+
+.vocabulary-grid,
+.register-grid,
+.passport-grid,
+.verb-grid,
+.sense-grid,
+.number-grid {
+    display: grid;
+    gap: 14px;
+}
+
+.vocabulary-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.vocabulary-item {
+    padding: 20px;
+    background: var(--green);
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.vocabulary-item b {
+    display: block;
+    font-size: 27px;
+}
+
+.register-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.register-card {
+    padding: 24px;
+    border: 2px solid var(--ink);
+    border-radius: 22px;
+}
+
+.register-card .phrase {
+    font-size: clamp(22px, 3vw, 40px);
+    font-weight: 900;
+}
+
+.choice-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.choice-row button {
+    padding: 10px 18px;
+    background: white;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.passport-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.passport {
+    position: relative;
+    min-height: 310px;
+    padding: 26px;
+    overflow: hidden;
+    background: #d8ecff;
+    border: 3px solid var(--ink);
+    border-radius: 22px;
+    box-shadow: 7px 7px 0 var(--ink);
+}
+
+.passport:nth-child(2) { background: #ffe2f0; }
+.passport:nth-child(3) { background: #e3ffd8; }
+.passport:nth-child(4) { background: #fff0b8; }
+
+.passport::after {
+    content: "DEUTSCH · KLASSE";
+    position: absolute;
+    right: -20px;
+    bottom: 40px;
+    transform: rotate(-90deg);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    opacity: .35;
+}
+
+.passport-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.passport-photo {
+    width: 90px;
+    height: 110px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    background: white;
+    border: 2px solid var(--ink);
+    border-radius: 45% 45% 15px 15px;
+    font-size: 55px;
+}
+
+.passport h3 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.passport dl {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 8px;
+    margin: 0;
+}
+
+.passport dt {
+    font-weight: 900;
+}
+
+.passport dd {
+    margin: 0;
+}
+
+.bio-card {
+    display: grid;
+    grid-template-columns: .45fr 1.55fr;
+    gap: 24px;
+    align-items: center;
+}
+
+.bio-portrait {
+    min-height: 330px;
+    display: grid;
+    place-items: center;
+    background: var(--violet);
+    border: 2px solid var(--ink);
+    border-radius: 28px;
+    font-size: 110px;
+}
+
+.gossip {
+    padding: 18px;
+    background: var(--yellow);
+    border: 2px dashed var(--ink);
+    border-radius: 18px;
+}
+
+.verb-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.verb-card,
+.sense-card,
+.number-card {
+    padding: 24px;
+    border: 2px solid var(--ink);
+    border-radius: 22px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.verb-card:hover,
+.sense-card:hover,
+.number-card:hover {
+    transform: translateY(-6px);
+}
+
+.verb-card b {
+    display: block;
+    font-size: 32px;
+}
+
+.conjugation-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(20px, 3vw, 38px);
+}
+
+.conjugation-table td {
+    padding: 12px;
+    border-bottom: 2px solid var(--ink);
+}
+
+.conjugation-table td:last-child {
+    color: var(--violet);
+    font-weight: 900;
+}
+
+.sense-grid {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.sense-card {
+    min-height: 190px;
+    text-align: center;
+}
+
+.sense-card .emoji {
+    display: block;
+    font-size: 68px;
+}
+
+.sense-card b {
+    font-size: 19px;
+}
+
+
+.matching-board {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap: 22px;
+
+    margin-top: 28px;
+
+}
+
+
+.matching-column {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap: 12px;
+
+    align-content: start;
+
+    padding: 22px;
+
+    background: white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 24px;
+
+    box-shadow:
+        6px
+        6px
+        0
+        var(--ink);
+
+}
+
+
+.matching-column h2 {
+
+    grid-column: 1 / -1;
+
+    margin: 0 0 8px;
+
+}
+
+
+.match-image,
+.match-word {
+
+    min-height: 120px;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 16px;
+
+    background: var(--yellow);
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius: 20px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.match-image {
+    font-size: 62px;
+}
+
+
+.match-word {
+
+    min-height: 72px;
+
+    background: var(--pink);
+
+    font-size: 19px;
+
+}
+
+
+.match-image:hover,
+.match-word:hover,
+.match-image.selected,
+.match-word.selected {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        4px
+        4px
+        0
+        var(--ink);
+
+}
+
+
+.match-image.selected,
+.match-word.selected {
+
+    background: var(--blue);
+
+    outline:
+        4px
+        solid
+        white;
+
+}
+
+
+.match-image.matched,
+.match-word.matched {
+
+    background: #b9ffc4;
+
+    border-color: #08751b;
+
+    color: #075f17;
+
+    cursor: default;
+
+    opacity: .7;
+
+}
+
+
+.match-image.wrong,
+.match-word.wrong {
+
+    background: #ffc4c4;
+
+    animation:
+        matchShake
+        .35s;
+
+}
+
+
+@keyframes matchShake {
+
+    25% {
+        transform: translateX(-7px);
+    }
+
+    75% {
+        transform: translateX(7px);
+    }
+
+}
+
+
+.match-status {
+
+    min-height: 34px;
+
+    margin-top: 22px;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    text-align: center;
+
+}
+
+.number-grid {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.number-card {
+    min-height: 155px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.number-card strong {
+    font-size: 54px;
+}
+
+.number-card b {
+    font-size: 22px;
+}
+
+.audio-number {
+    min-height: 250px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
+
 .footer-tip {
 
     position: fixed;
@@ -1559,6 +2094,25 @@ button {
     }
 
 
+    .conversation-layout,
+    .bio-card,
+    .matching-board {
+        grid-template-columns: 1fr;
+    }
+
+
+    .vocabulary-grid,
+    .verb-grid,
+    .sense-grid,
+    .number-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+
     .lyrics-header {
 
         align-items: flex-start;
@@ -1584,7 +2138,18 @@ button {
 
     .greetings,
     .w-grid,
-    .days {
+    .days,
+    .vocabulary-grid,
+    .register-grid,
+    .passport-grid,
+    .verb-grid,
+    .sense-grid,
+    .number-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .matching-column {
         grid-template-columns: 1fr;
     }
 
@@ -1668,6 +2233,30 @@ button {
         data-view="fragen"
     >
         W-FRAGEN
+    </button>
+
+
+    <button
+        class="tab"
+        data-view="verben"
+    >
+        VERBEN
+    </button>
+
+
+    <button
+        class="tab"
+        data-view="sehen"
+    >
+        SEHEN UND HÖREN
+    </button>
+
+
+    <button
+        class="tab"
+        data-view="nummern"
+    >
+        NUMMERN
     </button>
 
 </nav>
@@ -2809,6 +3398,331 @@ button {
 
     <div class="grid">
 
+        <!-- CONVERSACIÓN COMPLETA -->
+
+        <article class="card full">
+
+            <div class="eyebrow">
+                Lesen · primero leemos
+            </div>
+
+            <h2>
+                Laura trifft Karol
+            </h2>
+
+            <div class="conversation-layout">
+
+                <div class="conversation-people">
+
+                    <div class="person-shape">
+                        👩‍🏫
+                        <span>LAURA</span>
+                    </div>
+
+                    <div class="person-shape">
+                        👩
+                        <span>KAROL</span>
+                    </div>
+
+                </div>
+
+                <div class="dialogue-reader">
+
+                    <p class="dialogue-line laura">
+                        <b>Laura:</b> Guten Tag! Ich bin Laura. Ich bin Ihre Deutschlehrerin. Wie heißen Sie?
+                    </p>
+
+                    <p class="dialogue-line karol">
+                        <b>Karol:</b> Hallo, mein Name ist Karol.
+                    </p>
+
+                    <p class="dialogue-line laura">
+                        <b>Laura:</b> Und woher kommen Sie?
+                    </p>
+
+                    <p class="dialogue-line karol">
+                        <b>Karol:</b> Ich komme aus Kolumbien. Wo wohnen Sie?
+                    </p>
+
+                    <p class="dialogue-line laura">
+                        <b>Laura:</b> Ich wohne in Bogotá. Und Sie?
+                    </p>
+
+                    <p class="dialogue-line karol">
+                        <b>Karol:</b> Ich wohne in Cali.
+                    </p>
+
+                    <p class="dialogue-line laura">
+                        <b>Laura:</b> Oh, cool! Wie geht es Ihnen?
+                    </p>
+
+                    <p class="dialogue-line karol">
+                        <b>Karol:</b> Mir geht es gut, danke. Und Ihnen?
+                    </p>
+
+                    <p class="dialogue-line laura">
+                        <b>Laura:</b> Auch gut. Tschüss!
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CONVERSACIÓN PARA COMPLETAR -->
+
+        <article class="card full blue">
+
+            <div class="eyebrow">
+                Schreiben · ahora completamos
+            </div>
+
+            <h2>
+                Ergänze Verben und Pronomen
+            </h2>
+
+            <div
+                class="dialogue-exercise"
+                id="dialogueExercise"
+            >
+
+                <p class="dialogue-line laura">
+                    Guten Tag! Ich
+                    <input class="fill-input" data-answer="bin" aria-label="Verbo sein">
+                    Laura. Ich bin
+                    <input class="fill-input" data-answer="Ihre" aria-label="Pronombre formal">
+                    Deutschlehrerin. Wie
+                    <input class="fill-input" data-answer="heißen" aria-label="Verbo heißen">
+                    Sie?
+                </p>
+
+                <p class="dialogue-line karol">
+                    Hallo,
+                    <input class="fill-input" data-answer="mein" aria-label="Pronombre posesivo">
+                    Name ist Karol.
+                </p>
+
+                <p class="dialogue-line laura">
+                    Und woher
+                    <input class="fill-input" data-answer="kommen" aria-label="Verbo kommen">
+                    Sie?
+                </p>
+
+                <p class="dialogue-line karol">
+                    Ich
+                    <input class="fill-input" data-answer="komme" aria-label="Verbo kommen conjugado">
+                    aus Kolumbien. Wo wohnen
+                    <input class="fill-input" data-answer="Sie" aria-label="Pronombre formal">
+                    ?
+                </p>
+
+                <p class="dialogue-line laura">
+                    Ich
+                    <input class="fill-input" data-answer="wohne" aria-label="Verbo wohnen">
+                    in Bogotá. Und Sie?
+                </p>
+
+                <p class="dialogue-line karol">
+                    Mir geht es gut, danke. Und
+                    <input class="fill-input" data-answer="Ihnen" aria-label="Pronombre formal dativo">
+                    ?
+                </p>
+
+                <button id="checkDialogue">
+                    ANTWORTEN PRÜFEN
+                </button>
+
+                <button id="resetDialogue">
+                    NOCH EINMAL
+                </button>
+
+                <p
+                    class="exercise-feedback"
+                    id="dialogueFeedback"
+                ></p>
+
+            </div>
+
+        </article>
+
+
+        <!-- VOCABULARIO CLAVE -->
+
+        <article class="card full">
+
+            <div class="eyebrow">
+                Schlüsselwörter · palabras clave
+            </div>
+
+            <h2>
+                Verben für das Gespräch
+            </h2>
+
+            <div class="vocabulary-grid">
+
+                <div class="vocabulary-item" data-speak="wohnen">
+                    <b>wohnen</b>
+                    vivir / residir
+                </div>
+
+                <div class="vocabulary-item" data-speak="kommen">
+                    <b>kommen</b>
+                    venir
+                </div>
+
+                <div class="vocabulary-item" data-speak="heißen">
+                    <b>heißen</b>
+                    llamarse
+                </div>
+
+                <div class="vocabulary-item" data-speak="sprechen">
+                    <b>sprechen</b>
+                    hablar
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- TUTEAR Y USTEAR -->
+
+        <article class="card full orange">
+
+            <div class="eyebrow">
+                Du oder Sie? · tutear o ustear
+            </div>
+
+            <h2>
+                Informell und formell
+            </h2>
+
+            <div class="register-grid">
+
+                <div class="register-card yellow">
+                    <h3>DU · informal</h3>
+                    <p>Familia, amistades, niños y situaciones cercanas.</p>
+                    <p class="phrase">Wie geht es dir?</p>
+                    <p class="phrase">Mir geht es gut. Und dir?</p>
+                </div>
+
+                <div class="register-card pink">
+                    <h3>SIE · formal</h3>
+                    <p>Personas desconocidas, atención profesional y situaciones formales.</p>
+                    <p class="phrase">Wie geht es Ihnen?</p>
+                    <p class="phrase">Mir geht es gut. Und Ihnen?</p>
+                </div>
+
+            </div>
+
+            <p class="note">
+                Importante: decimos <b>Mir geht es gut</b>. “Mir ist gut” no expresa naturalmente “estoy bien”.
+            </p>
+
+        </article>
+
+
+        <!-- WO ODER WOHER -->
+
+        <article class="card full green">
+
+            <div class="eyebrow">
+                Wo · Woher
+            </div>
+
+            <h2>
+                Aus oder in?
+            </h2>
+
+            <div id="placeExercise">
+
+                <p class="sentence">
+                    Wo wohnen Sie? — Ich wohne
+                    <span class="place-answer" data-answer="in">___</span>
+                    Frankfurt.
+                </p>
+
+                <div class="choice-row" data-target="0">
+                    <button>aus</button>
+                    <button>in</button>
+                </div>
+
+                <p class="sentence">
+                    Woher kommen Sie? — Ich komme
+                    <span class="place-answer" data-answer="aus">___</span>
+                    Brasilien.
+                </p>
+
+                <div class="choice-row" data-target="1">
+                    <button>aus</button>
+                    <button>in</button>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PASAPORTES -->
+
+        <article class="card full">
+
+            <div class="eyebrow">
+                Wer ist das? · ¿quién es?
+            </div>
+
+            <h2>
+                Vier Personen · vier Pässe
+            </h2>
+
+            <p>
+                Lee cada tarjeta y responde: Wie heißt die Person? Woher kommt sie? Welche Sprachen spricht sie?
+            </p>
+
+            <div
+                class="passport-grid"
+                id="passportGrid"
+            ></div>
+
+        </article>
+
+
+        <!-- BIOGRAFÍA -->
+
+        <article class="card full violet">
+
+            <div class="eyebrow">
+                Lesen · kleine Biografie
+            </div>
+
+            <h2>
+                Wer ist Dua Lipa?
+            </h2>
+
+            <div class="bio-card">
+
+                <div class="bio-portrait">
+                    🎤
+                </div>
+
+                <div>
+                    <p class="dialogue">
+                        <b>Dua Lipa</b> ist Sängerin, Songwriterin und Model. Sie ist am 22. August 1995 in London geboren. Ihre Familie kommt aus dem Kosovo und hat albanische Wurzeln. Dua Lipa wohnt und arbeitet international. Sie spricht Englisch und Albanisch. Sie singt Popmusik und liest gern Bücher.
+                    </p>
+
+                    <p class="gossip">
+                        <b>Ein kleines Gerücht 👀</b><br>
+                        Ihr Vorname „Dua“ bedeutet auf Albanisch „Liebe“. Als Kind mochte sie ihren ungewöhnlichen Namen nicht immer — später wurde er zu einem weltweit bekannten Künstlernamen.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
         <article class="card full pink">
 
             <h2>
@@ -2834,6 +3748,193 @@ button {
                 Am Samstag und Sonntag!
             </p>
 
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     VERBEN
+===================================================== -->
+
+<section
+    class="view"
+    id="verben"
+>
+
+    <div class="eyebrow">
+        06 · Grammatik
+    </div>
+
+    <h1 class="section-title">
+        Verben
+    </h1>
+
+    <p>
+        Toca cada verbo para escuchar su pronunciación.
+    </p>
+
+    <div
+        class="verb-grid"
+        id="verbGrid"
+    ></div>
+
+    <div class="grid">
+
+        <article class="card full yellow">
+
+            <div class="eyebrow">
+                Personalpronomen und Konjugation
+            </div>
+
+            <h2>
+                Verb der Woche: SEIN
+            </h2>
+
+            <table class="conjugation-table">
+                <tbody>
+                    <tr><td>ich</td><td>bin</td></tr>
+                    <tr><td>du</td><td>bist</td></tr>
+                    <tr><td>er / es / sie</td><td>ist</td></tr>
+                    <tr><td>wir</td><td>sind</td></tr>
+                    <tr><td>ihr</td><td>seid</td></tr>
+                    <tr><td>sie / Sie</td><td>sind</td></tr>
+                </tbody>
+            </table>
+
+        </article>
+
+        <article class="card wide blue">
+            <h2>Beispiele</h2>
+            <p class="sentence">Ich bin die Lehrerin.</p>
+            <p class="sentence">Du bist eine Frau.</p>
+            <p class="sentence">Sie ist Sängerin.</p>
+        </article>
+
+        <article class="card green">
+            <h2>Deine Aufgabe</h2>
+            <p>Completa oralmente:</p>
+            <p class="big">Wir ___ in Bogotá.</p>
+            <button onclick="this.nextElementSibling.hidden=false">ANTWORT</button>
+            <p hidden class="big">sind</p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SEHEN UND HÖREN
+===================================================== -->
+
+<section
+    class="view"
+    id="sehen"
+>
+
+    <div class="eyebrow">
+        07 · Wort und Bild
+    </div>
+
+    <h1 class="section-title">
+        Sehen und Hören
+    </h1>
+
+    <p>
+        Selecciona una imagen y después la palabra que le corresponde.
+        Toca una imagen para escuchar una pista de audio.
+    </p>
+
+    <div class="matching-board">
+
+        <div class="matching-column">
+
+            <h2>
+                Bilder · imágenes
+            </h2>
+
+            <div
+                id="matchingImages"
+                style="display: contents"
+            ></div>
+
+        </div>
+
+
+        <div class="matching-column">
+
+            <h2>
+                Wörter · palabras
+            </h2>
+
+            <div
+                id="matchingWords"
+                style="display: contents"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <p
+        class="match-status"
+        id="matchingStatus"
+    >
+        0 / 10 Paare
+    </p>
+
+
+    <div class="choices">
+
+        <button id="resetMatching">
+            NEU MISCHEN
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NUMMERN
+===================================================== -->
+
+<section
+    class="view"
+    id="nummern"
+>
+
+    <div class="eyebrow">
+        08 · Zahlen
+    </div>
+
+    <h1 class="section-title">
+        Nummern
+    </h1>
+
+    <p>
+        Toca un número para escuchar cómo se dice en alemán.
+    </p>
+
+    <div
+        class="number-grid"
+        id="numberGrid"
+    ></div>
+
+    <div class="grid">
+
+        <article class="card full orange audio-number">
+            <div>
+                <h2>Welche Nummer hörst du?</h2>
+                <button id="playNumber">🔊 NUMMER HÖREN</button>
+                <div class="choices" id="numberChoices"></div>
+                <p class="feedback" id="numberFeedback"></p>
+                <button id="nextNumber">NÄCHSTE NUMMER →</button>
+            </div>
         </article>
 
     </div>
@@ -4039,6 +5140,892 @@ document
         );
 
     });
+
+
+/* =====================================================
+   DIÁLOGO PARA COMPLETAR
+===================================================== */
+
+const dialogueInputs =
+    [
+        ...document.querySelectorAll(
+            "#dialogueExercise .fill-input"
+        )
+    ];
+
+
+function normalizeAnswer(text) {
+
+    return text
+        .trim()
+        .toLocaleLowerCase("de-DE");
+
+}
+
+
+document
+    .getElementById(
+        "checkDialogue"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            let correctAnswers = 0;
+
+
+            dialogueInputs.forEach(input => {
+
+                const isCorrect =
+                    normalizeAnswer(
+                        input.value
+                    ) ===
+                    normalizeAnswer(
+                        input.dataset.answer
+                    );
+
+
+                input.classList.toggle(
+                    "correct",
+                    isCorrect
+                );
+
+
+                input.classList.toggle(
+                    "wrong",
+                    !isCorrect
+                );
+
+
+                if (isCorrect) {
+                    correctAnswers++;
+                }
+
+            });
+
+
+            const feedback =
+                document.getElementById(
+                    "dialogueFeedback"
+                );
+
+
+            if (
+                correctAnswers ===
+                dialogueInputs.length
+            ) {
+
+                feedback.textContent =
+                    "Sehr gut! Alle Antworten sind richtig. ✓";
+
+            } else {
+
+                feedback.textContent =
+                    `${correctAnswers} von ${dialogueInputs.length} Antworten sind richtig.`;
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "resetDialogue"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            dialogueInputs.forEach(input => {
+
+                input.value = "";
+
+                input.classList.remove(
+                    "correct",
+                    "wrong"
+                );
+
+            });
+
+
+            document
+                .getElementById(
+                    "dialogueFeedback"
+                )
+                .textContent = "";
+
+        }
+    );
+
+
+/* Palabras clave */
+
+document
+    .querySelectorAll(
+        ".vocabulary-item"
+    )
+    .forEach(item => {
+
+        item.addEventListener(
+            "click",
+            () => {
+
+                speakGerman(
+                    item.dataset.speak
+                );
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   WO ODER WOHER
+===================================================== */
+
+const placeAnswers =
+    document.querySelectorAll(
+        ".place-answer"
+    );
+
+
+document
+    .querySelectorAll(
+        "#placeExercise .choice-row"
+    )
+    .forEach(row => {
+
+        row
+            .querySelectorAll(
+                "button"
+            )
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const answer =
+                            placeAnswers[
+                                Number(
+                                    row.dataset.target
+                                )
+                            ];
+
+
+                        const value =
+                            button
+                                .textContent
+                                .trim();
+
+
+                        answer.textContent =
+                            value;
+
+
+                        answer.style.color =
+                            value ===
+                            answer.dataset.answer
+                                ? "#08751b"
+                                : "#b00020";
+
+                    }
+                );
+
+            });
+
+    });
+
+
+/* =====================================================
+   PASAPORTES
+===================================================== */
+
+const passports = [
+
+    {
+        family: "Kowalska",
+        first: "Magdalena",
+        country: "Polen",
+        languages: "Polnisch, Russisch",
+        icon: "👩🏻"
+    },
+
+    {
+        family: "Kim",
+        first: "Ji-soo",
+        country: "Südkorea",
+        languages: "Koreanisch, Englisch",
+        icon: "👩🏻‍🦱"
+    },
+
+    {
+        family: "Varo",
+        first: "Remedios",
+        country: "Spanien / Mexiko",
+        languages: "Spanisch, Französisch",
+        icon: "🎨"
+    },
+
+    {
+        family: "de Beauvoir",
+        first: "Simone",
+        country: "Frankreich",
+        languages: "Französisch",
+        icon: "📚"
+    }
+
+];
+
+
+document
+    .getElementById(
+        "passportGrid"
+    )
+    .innerHTML =
+        passports.map(person => {
+
+            return `
+                <article class="passport">
+
+                    <div class="passport-head">
+
+                        <div class="passport-photo">
+                            ${person.icon}
+                        </div>
+
+                        <div>
+                            <div class="eyebrow">
+                                Sprachpass
+                            </div>
+                            <h3>
+                                ${person.first} ${person.family}
+                            </h3>
+                        </div>
+
+                    </div>
+
+                    <dl>
+                        <dt>Familienname:</dt>
+                        <dd>${person.family}</dd>
+
+                        <dt>Vorname:</dt>
+                        <dd>${person.first}</dd>
+
+                        <dt>Land:</dt>
+                        <dd>${person.country}</dd>
+
+                        <dt>Sprachen:</dt>
+                        <dd>${person.languages}</dd>
+                    </dl>
+
+                </article>
+            `;
+
+        }).join("");
+
+
+/* =====================================================
+   VERBEN
+===================================================== */
+
+const verbs = [
+
+    ["heißen", "llamarse"],
+    ["wohnen", "vivir / residir"],
+    ["trinken", "beber"],
+    ["kommen", "venir"],
+    ["hören", "escuchar"],
+    ["lesen", "leer"],
+    ["sprechen", "hablar"],
+    ["verstehen", "entender"],
+    ["sein", "ser / estar"]
+
+];
+
+
+const lessonColors = [
+    "pink",
+    "yellow",
+    "green",
+    "orange",
+    "blue",
+    "violet"
+];
+
+
+document
+    .getElementById(
+        "verbGrid"
+    )
+    .innerHTML =
+        verbs.map(
+            (verb, index) => {
+
+                return `
+                    <article
+                        class="verb-card ${lessonColors[index % lessonColors.length]}"
+                        data-word="${verb[0]}"
+                    >
+                        <b>${verb[0]}</b>
+                        <span>${verb[1]}</span>
+                    </article>
+                `;
+
+            }
+        ).join("");
+
+
+document
+    .querySelectorAll(
+        ".verb-card"
+    )
+    .forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                speakGerman(
+                    card.dataset.word
+                );
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   SEHEN UND HÖREN
+===================================================== */
+
+const senseWords = [
+
+    ["der Mond", "🌙"],
+    ["die Sonne", "☀️"],
+    ["die Nacht", "🌌"],
+    ["der Apfel", "🍎"],
+    ["der Kaffee", "☕"],
+    ["die Lehrerin", "👩‍🏫"],
+    ["die Musik", "🎵"],
+    ["die Natur", "🌿"],
+    ["der Supermarkt", "🛒"],
+    ["das Restaurant", "🍽️"]
+
+];
+
+
+let selectedImage = null;
+
+let selectedWord = null;
+
+let matchedPairs = 0;
+
+
+function shuffledItems(items) {
+
+    return [...items].sort(
+        () =>
+            Math.random() - .5
+    );
+
+}
+
+
+function loadMatchingGame() {
+
+    selectedImage = null;
+
+    selectedWord = null;
+
+    matchedPairs = 0;
+
+
+    const imageOrder =
+        shuffledItems(
+            senseWords
+        );
+
+
+    const wordOrder =
+        shuffledItems(
+            senseWords
+        );
+
+
+    document
+        .getElementById(
+            "matchingImages"
+        )
+        .innerHTML =
+            imageOrder.map(item => {
+
+                return `
+                    <button
+                        class="match-image"
+                        data-word="${item[0]}"
+                        title="Escuchar pista"
+                    >
+                        ${item[1]}
+                    </button>
+                `;
+
+            }).join("");
+
+
+    document
+        .getElementById(
+            "matchingWords"
+        )
+        .innerHTML =
+            wordOrder.map(item => {
+
+                return `
+                    <button
+                        class="match-word"
+                        data-word="${item[0]}"
+                    >
+                        ${item[0]}
+                    </button>
+                `;
+
+            }).join("");
+
+
+    document
+        .getElementById(
+            "matchingStatus"
+        )
+        .textContent =
+            `0 / ${senseWords.length} Paare`;
+
+
+    document
+        .querySelectorAll(
+            ".match-image"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        button.classList.contains(
+                            "matched"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    document
+                        .querySelectorAll(
+                            ".match-image.selected"
+                        )
+                        .forEach(item => {
+
+                            item.classList.remove(
+                                "selected"
+                            );
+
+                        });
+
+
+                    selectedImage =
+                        button;
+
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+
+                    speakGerman(
+                        button.dataset.word
+                    );
+
+
+                    checkMatchingPair();
+
+                }
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(
+            ".match-word"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        button.classList.contains(
+                            "matched"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    document
+                        .querySelectorAll(
+                            ".match-word.selected"
+                        )
+                        .forEach(item => {
+
+                            item.classList.remove(
+                                "selected"
+                            );
+
+                        });
+
+
+                    selectedWord =
+                        button;
+
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+
+                    checkMatchingPair();
+
+                }
+            );
+
+        });
+
+}
+
+
+function checkMatchingPair() {
+
+    if (
+        !selectedImage ||
+        !selectedWord
+    ) {
+        return;
+    }
+
+
+    const isCorrect =
+        selectedImage.dataset.word ===
+        selectedWord.dataset.word;
+
+
+    if (isCorrect) {
+
+        selectedImage.classList.remove(
+            "selected"
+        );
+
+
+        selectedWord.classList.remove(
+            "selected"
+        );
+
+
+        selectedImage.classList.add(
+            "matched"
+        );
+
+
+        selectedWord.classList.add(
+            "matched"
+        );
+
+
+        matchedPairs++;
+
+
+        const status =
+            document.getElementById(
+                "matchingStatus"
+            );
+
+
+        status.textContent =
+            matchedPairs ===
+            senseWords.length
+                ? "Sehr gut! Alle Paare sind richtig. ✓"
+                : `${matchedPairs} / ${senseWords.length} Paare`;
+
+
+        selectedImage = null;
+
+        selectedWord = null;
+
+    } else {
+
+        const wrongImage =
+            selectedImage;
+
+
+        const wrongWord =
+            selectedWord;
+
+
+        wrongImage.classList.add(
+            "wrong"
+        );
+
+
+        wrongWord.classList.add(
+            "wrong"
+        );
+
+
+        document
+            .getElementById(
+                "matchingStatus"
+            )
+            .textContent =
+                "Noch einmal · intenta otra pareja";
+
+
+        selectedImage = null;
+
+        selectedWord = null;
+
+
+        setTimeout(
+            () => {
+
+                wrongImage.classList.remove(
+                    "wrong",
+                    "selected"
+                );
+
+
+                wrongWord.classList.remove(
+                    "wrong",
+                    "selected"
+                );
+
+            },
+            550
+        );
+
+    }
+
+}
+
+
+document
+    .getElementById(
+        "resetMatching"
+    )
+    .addEventListener(
+        "click",
+        loadMatchingGame
+    );
+
+
+loadMatchingGame();
+
+
+/* =====================================================
+   NUMMERN
+===================================================== */
+
+const numbers = [
+
+    [1, "eins"],
+    [2, "zwei"],
+    [3, "drei"],
+    [4, "vier"],
+    [5, "fünf"],
+    [6, "sechs"],
+    [7, "sieben"],
+    [8, "acht"],
+    [9, "neun"],
+    [10, "zehn"],
+    [11, "elf"],
+    [12, "zwölf"],
+    [13, "dreizehn"],
+    [14, "vierzehn"],
+    [15, "fünfzehn"],
+    [16, "sechzehn"],
+    [17, "siebzehn"],
+    [18, "achtzehn"],
+    [19, "neunzehn"],
+    [20, "zwanzig"]
+
+];
+
+
+document
+    .getElementById(
+        "numberGrid"
+    )
+    .innerHTML =
+        numbers.map(
+            (number, index) => {
+
+                return `
+                    <article
+                        class="number-card ${lessonColors[index % lessonColors.length]}"
+                        data-word="${number[1]}"
+                    >
+                        <strong>${number[0]}</strong>
+                        <b>${number[1]}</b>
+                    </article>
+                `;
+
+            }
+        ).join("");
+
+
+document
+    .querySelectorAll(
+        ".number-card"
+    )
+    .forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                speakGerman(
+                    card.dataset.word
+                );
+
+            }
+        );
+
+    });
+
+
+let currentNumber = 0;
+
+
+function loadNumberQuiz() {
+
+    currentNumber =
+        Math.floor(
+            Math.random() *
+            numbers.length
+        );
+
+
+    const correct =
+        numbers[currentNumber];
+
+
+    const alternatives =
+        numbers
+            .filter(
+                item =>
+                    item[0] !==
+                    correct[0]
+            )
+            .sort(
+                () =>
+                    Math.random() - .5
+            )
+            .slice(0, 3);
+
+
+    const options =
+        [
+            correct,
+            ...alternatives
+        ].sort(
+            () =>
+                Math.random() - .5
+        );
+
+
+    document
+        .getElementById(
+            "numberChoices"
+        )
+        .innerHTML =
+            options.map(item => {
+
+                return `
+                    <button data-number="${item[0]}">
+                        ${item[0]}
+                    </button>
+                `;
+
+            }).join("");
+
+
+    document
+        .getElementById(
+            "numberFeedback"
+        )
+        .textContent = "";
+
+
+    document
+        .querySelectorAll(
+            "#numberChoices button"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .getElementById(
+                            "numberFeedback"
+                        )
+                        .textContent =
+                            Number(
+                                button.dataset.number
+                            ) ===
+                            correct[0]
+                                ? `Richtig! ${correct[0]} · ${correct[1]} ✓`
+                                : "Noch einmal · intenta otra vez";
+
+                }
+            );
+
+        });
+
+}
+
+
+document
+    .getElementById(
+        "playNumber"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            speakGerman(
+                numbers[currentNumber][1]
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "nextNumber"
+    )
+    .addEventListener(
+        "click",
+        loadNumberQuiz
+    );
+
+
+loadNumberQuiz();
 
 
 /* =====================================================
