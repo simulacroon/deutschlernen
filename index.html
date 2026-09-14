@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1"
 >
 
-<title>Deutsch lernen · Klasse 02</title>
+<title>Deutsch lernen · Klasse 03</title>
 
 <style>
 
@@ -2045,6 +2045,289 @@ button {
    RESPONSIVE
 ===================================================== */
 
+/* =====================================================
+   INTERACCIONES · VERBEN, HAUS-SZENE UND NUMMERN
+===================================================== */
+
+.verb-card.active {
+    outline: 5px solid var(--ink);
+    transform: translateY(-6px) rotate(-1deg);
+}
+
+.dynamic-panel {
+    transition: transform .2s ease;
+}
+
+.dynamic-panel.changed {
+    transform: scale(.985);
+}
+
+.example-list {
+    display: grid;
+    gap: 10px;
+}
+
+.home-game {
+    overflow: hidden;
+    padding: 0;
+}
+
+.home-game-copy {
+    padding: 28px 28px 12px;
+}
+
+.home-scene {
+    --sky: #9ee6ff;
+    position: relative;
+    min-height: 410px;
+    overflow: hidden;
+    padding: 28px;
+    background: linear-gradient(var(--sky) 0 65%, #8bd36a 65%);
+    border-top: 3px solid var(--ink);
+    transition: background .4s ease;
+}
+
+.home-scene.evening {
+    --sky: #785fa8;
+    color: white;
+}
+
+.scene-sun {
+    position: absolute;
+    top: 30px;
+    right: 8%;
+    width: 74px;
+    height: 74px;
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow: 0 0 0 12px rgba(255,210,63,.25);
+}
+
+.evening .scene-sun {
+    background: #fff7bf;
+    box-shadow: -18px 0 0 2px var(--sky) inset;
+}
+
+.little-house {
+    position: absolute;
+    bottom: 0;
+    left: 4%;
+    width: 280px;
+    height: 205px;
+    border: 3px solid var(--ink);
+    background: #fff7df;
+}
+
+.little-house::before {
+    content: "";
+    position: absolute;
+    top: -93px;
+    left: -23px;
+    border-right: 162px solid transparent;
+    border-bottom: 95px solid var(--orange);
+    border-left: 162px solid transparent;
+}
+
+.little-house::after {
+    content: "";
+    position: absolute;
+    right: 34px;
+    bottom: 0;
+    width: 70px;
+    height: 105px;
+    border: 3px solid var(--ink);
+    background: var(--pink);
+}
+
+.scene-people {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 18px;
+    min-height: 230px;
+}
+
+.scene-person {
+    display: grid;
+    place-items: center;
+    width: 122px;
+    min-height: 152px;
+    padding: 12px;
+    border: 3px solid var(--ink);
+    border-radius: 48% 48% 20px 20px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 58px;
+    text-align: center;
+}
+
+.scene-person span {
+    display: block;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.scene-dialogue {
+    position: relative;
+    z-index: 3;
+    max-width: 760px;
+    margin: 22px auto 0;
+    padding: 20px;
+    border: 3px solid var(--ink);
+    border-radius: 22px;
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 7px 7px 0 var(--ink);
+}
+
+.scene-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.scene-options button.correct {
+    background: var(--green);
+}
+
+.scene-options button.wrong {
+    background: var(--pink);
+}
+
+.scene-progress {
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+.number-lab {
+    display: grid;
+    gap: 24px;
+}
+
+.number-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.number-machine {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.number-part,
+.number-center {
+    padding: 20px 12px;
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    background: white;
+}
+
+.number-center {
+    background: var(--yellow);
+    font-size: clamp(44px, 8vw, 92px);
+    font-weight: 950;
+}
+
+.number-part strong {
+    display: block;
+    font-size: clamp(24px, 4vw, 44px);
+}
+
+.number-arrow {
+    font-size: 28px;
+    font-weight: 950;
+}
+
+.number-result {
+    padding: 16px;
+    border: 3px dashed var(--ink);
+    border-radius: 16px;
+    background: var(--paper);
+    font-size: clamp(22px, 4vw, 38px);
+    font-weight: 950;
+    text-align: center;
+}
+
+.decade-family {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.mini-number {
+    padding: 10px 6px;
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    background: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.mini-number b,
+.mini-number span {
+    display: block;
+}
+
+.number-exercise-grid,
+.service-grid,
+.pizza-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.number-question,
+.service-ad,
+.menu-item {
+    padding: 18px;
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    background: white;
+}
+
+.number-question input,
+.phone-answer {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border: 3px solid var(--ink);
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 800;
+}
+
+.service-ad {
+    min-height: 155px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.service-ad .ad-icon {
+    font-size: 42px;
+}
+
+.service-ad strong,
+.service-ad span {
+    display: block;
+}
+
+.pizza-menu {
+    margin-top: 20px;
+    padding: 20px;
+    border: 3px dashed var(--ink);
+    border-radius: 18px;
+    background: #fff7df;
+}
+
 @media (max-width: 900px) {
 
     body {
@@ -2151,6 +2434,39 @@ button {
 
     .matching-column {
         grid-template-columns: 1fr;
+    }
+
+    .scene-options,
+    .number-exercise-grid,
+    .service-grid,
+    .pizza-menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-scene {
+        padding: 16px;
+    }
+
+    .little-house {
+        opacity: .45;
+    }
+
+    .scene-people {
+        gap: 6px;
+    }
+
+    .scene-person {
+        width: 31%;
+        min-height: 120px;
+        font-size: 38px;
+    }
+
+    .number-machine {
+        grid-template-columns: 1fr;
+    }
+
+    .decade-family {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
 
@@ -3719,6 +4035,44 @@ button {
 
         </article>
 
+        <!-- ESCENA INTERACTIVA EN CASA -->
+
+        <article class="card full home-game">
+
+            <div class="home-game-copy">
+                <div class="eyebrow">Zu Besuch · de visita</div>
+                <h2>Bei Carlotta und Oma Magdalena</h2>
+                <p>
+                    Completa dos visitas. Mira la hora, identifica con quién hablas
+                    y elige entre <b>du</b> y <b>Sie</b>. Algunas decisiones cambian
+                    la bebida que aparece al final.
+                </p>
+                <div class="choices">
+                    <button id="morningScene">☀️ MORGEN</button>
+                    <button id="eveningScene">🌙 ABEND</button>
+                </div>
+            </div>
+
+            <div class="home-scene" id="homeScene">
+                <div class="scene-sun" aria-hidden="true"></div>
+                <div class="little-house" aria-hidden="true"></div>
+
+                <div class="scene-people">
+                    <div class="scene-person">👩🏽<span>CARLOTTA · du</span></div>
+                    <div class="scene-person">👵🏼<span>OMA MAGDALENA · Sie</span></div>
+                    <div class="scene-person">🙋🏽<span>DU</span></div>
+                </div>
+
+                <div class="scene-dialogue" aria-live="polite">
+                    <div class="scene-progress" id="sceneProgress"></div>
+                    <p class="sentence" id="scenePrompt"></p>
+                    <div class="scene-options" id="sceneOptions"></div>
+                    <p class="feedback" id="sceneFeedback"></p>
+                </div>
+            </div>
+
+        </article>
+
         <article class="card full pink">
 
             <h2>
@@ -3779,42 +4133,31 @@ button {
 
     <div class="grid">
 
-        <article class="card full yellow">
+        <article class="card full yellow dynamic-panel" id="verbConjugationPanel">
 
             <div class="eyebrow">
                 Personalpronomen und Konjugation
             </div>
 
-            <h2>
-                Verb der Woche: SEIN
-            </h2>
+            <h2 id="verbWeekTitle">Verb der Woche: SEIN</h2>
 
             <table class="conjugation-table">
-                <tbody>
-                    <tr><td>ich</td><td>bin</td></tr>
-                    <tr><td>du</td><td>bist</td></tr>
-                    <tr><td>er / es / sie</td><td>ist</td></tr>
-                    <tr><td>wir</td><td>sind</td></tr>
-                    <tr><td>ihr</td><td>seid</td></tr>
-                    <tr><td>sie / Sie</td><td>sind</td></tr>
-                </tbody>
+                <tbody id="conjugationBody"></tbody>
             </table>
 
         </article>
 
-        <article class="card wide blue">
+        <article class="card wide blue dynamic-panel" id="verbExamplesPanel">
             <h2>Beispiele</h2>
-            <p class="sentence">Ich bin die Lehrerin.</p>
-            <p class="sentence">Du bist eine Frau.</p>
-            <p class="sentence">Sie ist Sängerin.</p>
+            <div class="example-list" id="verbExamples"></div>
         </article>
 
         <article class="card green">
             <h2>Deine Aufgabe</h2>
             <p>Completa oralmente:</p>
-            <p class="big">Wir ___ in Bogotá.</p>
-            <button onclick="this.nextElementSibling.hidden=false">ANTWORT</button>
-            <p hidden class="big">sind</p>
+            <p class="big" id="verbTask"></p>
+            <button id="showVerbTask">ANTWORT</button>
+            <p hidden class="big" id="verbTaskAnswer"></p>
         </article>
 
     </div>
@@ -3923,6 +4266,43 @@ button {
 
     <div class="grid">
 
+        <article class="card full yellow">
+            <div class="eyebrow">Einer zuerst · primero la unidad</div>
+            <h2>Wie baut man eine Zahl?</h2>
+            <p>
+                Desde 21 decimos primero la unidad, luego <b>und</b> y finalmente
+                la decena. Elige un número y sigue las flechas.
+            </p>
+
+            <div class="number-lab">
+                <div class="number-selector" id="builderChoices"></div>
+
+                <div class="number-machine">
+                    <div class="number-part">
+                        1.º · Einer
+                        <strong id="builderUnit">vier</strong>
+                    </div>
+                    <div class="number-center" id="builderValue">24</div>
+                    <div class="number-part">
+                        3.º · Zehner
+                        <strong id="builderTens">zwanzig</strong>
+                    </div>
+                </div>
+
+                <div class="number-arrow">vier → und → zwanzig</div>
+                <div class="number-result" id="builderWord">vierundzwanzig</div>
+            </div>
+        </article>
+
+        <article class="card full blue">
+            <div class="eyebrow">Zahlenfamilien</div>
+            <h2>Die Zwanziger und Dreißiger</h2>
+            <div id="decadeFamilies"></div>
+
+            <h2>Die Zehner · centenas y mil</h2>
+            <div class="decade-family" id="roundNumbers"></div>
+        </article>
+
         <article class="card full orange audio-number">
             <div>
                 <h2>Welche Nummer hörst du?</h2>
@@ -3930,6 +4310,56 @@ button {
                 <div class="choices" id="numberChoices"></div>
                 <p class="feedback" id="numberFeedback"></p>
                 <button id="nextNumber">NÄCHSTE NUMMER →</button>
+            </div>
+        </article>
+
+        <article class="card full green">
+            <div class="eyebrow">Lesen und schreiben</div>
+            <h2>Wort ↔ Zahl</h2>
+            <p>Escribe el número o la palabra alemana que falta.</p>
+            <div class="number-exercise-grid" id="numberWritingExercise"></div>
+            <div class="choices">
+                <button id="checkNumberWriting">ANTWORTEN PRÜFEN</button>
+                <button id="resetNumberWriting">NOCH EINMAL</button>
+            </div>
+            <p class="feedback" id="numberWritingFeedback"></p>
+        </article>
+
+        <article class="card full violet">
+            <div class="eyebrow">Das Telefon · Hörverstehen</div>
+            <h2>Bitte ruf mich an!</h2>
+            <p>
+                Escucha el mensaje y copia el número. Puedes repetirlo cuantas
+                veces necesites.
+            </p>
+            <div class="dialogue-line laura">
+                📱 <b>Titus bekommt eine Nachricht.</b>
+            </div>
+            <div class="choices">
+                <button id="playPhoneMessage">🔊 NACHRICHT HÖREN</button>
+                <button id="playPhoneDigits">🐢 NUR DIE NUMMER</button>
+            </div>
+            <input class="phone-answer" id="phoneAnswer" inputmode="tel" placeholder="Escribe el teléfono aquí" aria-label="Número de teléfono escuchado">
+            <div class="choices">
+                <button id="checkPhoneAnswer">NUMMER PRÜFEN</button>
+            </div>
+            <p class="feedback" id="phoneFeedback"></p>
+        </article>
+
+        <article class="card full pink">
+            <div class="eyebrow">Anrufen · llamadas prácticas</div>
+            <h2>Wohin rufst du an?</h2>
+            <p>
+                Toca un anuncio para escuchar su número. En la pizzería también
+                puedes abrir la carta y practicar precios y pedidos.
+            </p>
+            <div class="service-grid" id="serviceAds"></div>
+
+            <div class="pizza-menu" id="pizzaMenu" hidden>
+                <div class="eyebrow">Pizzeria Sonnenrad · Speisekarte</div>
+                <h2>Was möchten Sie?</h2>
+                <div class="pizza-menu-grid" id="pizzaMenuGrid"></div>
+                <p class="note">Modelo: „Eine Pizza Margherita und zwei Orangensäfte, bitte.“</p>
             </div>
         </article>
 
@@ -5424,21 +5854,153 @@ document
 
 
 /* =====================================================
+   BESUCH BEI CARLOTTA UND OMA
+===================================================== */
+
+const houseStories = {
+    morning: {
+        label: "MORGEN · 09:00",
+        steps: [
+            { speaker: "Oma Magdalena öffnet die Tür.", question: "¿Cómo la saludas?", options: ["Guten Morgen!", "Guten Abend!"], correct: 0, reply: "Guten Morgen! Komm herein, bitte." },
+            { speaker: "Carlotta sagt:", question: "Completa la presentación formal de su abuela.", options: ["Sie ist meine Oma Magdalena.", "Du ist meine Oma Magdalena."], correct: 0, reply: "Ja, ich bin Magdalena." },
+            { speaker: "Du sprichst mit Oma Magdalena.", question: "Pregunta formalmente cómo se llama.", options: ["Wie heißt du?", "Wie heißen Sie?"], correct: 1, reply: "Ich heiße Magdalena Kowalska." },
+            { speaker: "Oma Magdalena:", question: "„Ich komme aus Polen und wohne in Berlin.“ ¿Qué pregunta corresponde?", options: ["Woher kommen Sie und wo wohnen Sie?", "Woher kommst du und wo wohnst du?"], correct: 0, reply: "Ich spreche Polnisch, Russisch und ein bisschen Deutsch." },
+            { speaker: "Du fragst Oma Magdalena:", question: "¿Qué desea beber?", options: ["Was trinkst du gerne?", "Was trinken Sie gerne?"], correct: 1, reply: "Ich trinke gerne Kaffee." },
+            { speaker: "Du bestellst für euch beide.", question: "Elige la bebida.", options: ["Zwei Kaffee, bitte.", "Zwei Orangensäfte, bitte."], correct: "any", replyByOption: ["Zwei Kaffee. – Danke! – Bitte! ☕☕", "Zwei Orangensäfte. – Danke! – Bitte! 🍊🍊"] }
+        ]
+    },
+    evening: {
+        label: "ABEND · 19:30",
+        steps: [
+            { speaker: "Carlotta öffnet die Tür.", question: "¿Cómo la saludas a esta hora?", options: ["Guten Morgen!", "Guten Abend!"], correct: 1, reply: "Guten Abend! Schön, dich zu sehen." },
+            { speaker: "Oma Magdalena sagt zu dir:", question: "Presenta informalmente a Carlotta.", options: ["Sie ist meine Freundin Carlotta.", "Sie sind meine Freundin Carlotta."], correct: 0, reply: "Hallo! Ich heiße Carlotta." },
+            { speaker: "Du sprichst mit Carlotta.", question: "Pregunta informalmente de dónde viene.", options: ["Woher kommen Sie?", "Woher kommst du?"], correct: 1, reply: "Ich komme aus Italien und wohne in Berlin." },
+            { speaker: "Carlotta fragt dich:", question: "„Welche Sprachen sprichst du?“", options: ["Ich spreche Spanisch und ein bisschen Deutsch.", "Sie sprechen Spanisch."], correct: 0, reply: "Cool! Ich spreche Italienisch und Deutsch." },
+            { speaker: "Du fragst Carlotta:", question: "¿Qué le gusta beber?", options: ["Was trinken Sie gerne?", "Was trinkst du gerne?"], correct: 1, reply: "Ich trinke gerne Orangensaft." },
+            { speaker: "Carlotta bringt Getränke.", question: "Elige qué pedir.", options: ["Zwei Kaffee, bitte.", "Zwei Orangensäfte, bitte."], correct: "any", replyByOption: ["Bitte schön: zwei Kaffee. – Danke! ☕☕", "Bitte schön: zwei Orangensäfte. – Danke! 🍊🍊"] }
+        ]
+    }
+};
+
+let activeHouseStory = "morning";
+let houseStep = 0;
+
+function loadHouseStory(storyName) {
+    activeHouseStory = storyName;
+    houseStep = 0;
+    document.getElementById("homeScene").classList.toggle("evening", storyName === "evening");
+    renderHouseStep();
+}
+
+function renderHouseStep() {
+    const story = houseStories[activeHouseStory];
+    const step = story.steps[houseStep];
+    document.getElementById("sceneProgress").textContent = `${story.label} · ${houseStep + 1}/${story.steps.length}`;
+    document.getElementById("scenePrompt").innerHTML = `<b>${step.speaker}</b><br>${step.question}`;
+    document.getElementById("sceneFeedback").textContent = "";
+    document.getElementById("sceneOptions").innerHTML = step.options.map((option, index) => `
+        <button data-choice="${index}">${option}</button>
+    `).join("");
+
+    document.querySelectorAll("#sceneOptions button").forEach(button => {
+        button.addEventListener("click", () => answerHouseStep(Number(button.dataset.choice)));
+    });
+}
+
+function answerHouseStep(choice) {
+    const story = houseStories[activeHouseStory];
+    const step = story.steps[houseStep];
+    const correct = step.correct === "any" || choice === step.correct;
+    const chosenButton = document.querySelector(`#sceneOptions button[data-choice="${choice}"]`);
+
+    if (!correct) {
+        chosenButton.classList.add("wrong");
+        document.getElementById("sceneFeedback").textContent = "Noch einmal: piensa en la hora y en du/Sie.";
+        return;
+    }
+
+    chosenButton.classList.add("correct");
+    document.querySelectorAll("#sceneOptions button").forEach(button => button.disabled = true);
+    const reply = step.replyByOption ? step.replyByOption[choice] : step.reply;
+    document.getElementById("sceneFeedback").innerHTML = `<b>Richtig! ✓</b> ${reply}`;
+    speakGerman(`${step.options[choice]}. ${reply}`);
+
+    const nextButton = document.createElement("button");
+    const finalStep = houseStep === story.steps.length - 1;
+    nextButton.textContent = finalStep ? "NOCH EINMAL ↻" : "WEITER →";
+    nextButton.addEventListener("click", () => {
+        houseStep = finalStep ? 0 : houseStep + 1;
+        renderHouseStep();
+    });
+    document.getElementById("sceneFeedback").append(" ", nextButton);
+}
+
+document.getElementById("morningScene").addEventListener("click", () => loadHouseStory("morning"));
+document.getElementById("eveningScene").addEventListener("click", () => loadHouseStory("evening"));
+loadHouseStory("morning");
+
+
+/* =====================================================
    VERBEN
 ===================================================== */
 
+const pronouns = ["ich", "du", "er / es / sie", "wir", "ihr", "sie / Sie"];
+
 const verbs = [
-
-    ["heißen", "llamarse"],
-    ["wohnen", "vivir / residir"],
-    ["trinken", "beber"],
-    ["kommen", "venir"],
-    ["hören", "escuchar"],
-    ["lesen", "leer"],
-    ["sprechen", "hablar"],
-    ["verstehen", "entender"],
-    ["sein", "ser / estar"]
-
+    {
+        word: "heißen", translation: "llamarse",
+        forms: ["heiße", "heißt", "heißt", "heißen", "heißt", "heißen"],
+        examples: ["Ich heiße Karol.", "Wie heißt du?", "Wie heißen Sie?"],
+        task: "Sie ___ Frau Kowalska.", answer: "heißen"
+    },
+    {
+        word: "wohnen", translation: "vivir / residir",
+        forms: ["wohne", "wohnst", "wohnt", "wohnen", "wohnt", "wohnen"],
+        examples: ["Ich wohne in Bogotá.", "Wo wohnst du?", "Oma wohnt in Berlin."],
+        task: "Wir ___ in Frankfurt.", answer: "wohnen"
+    },
+    {
+        word: "trinken", translation: "beber",
+        forms: ["trinke", "trinkst", "trinkt", "trinken", "trinkt", "trinken"],
+        examples: ["Ich trinke Kaffee.", "Was trinkst du gern?", "Sie trinken Orangensaft."],
+        task: "Carlotta ___ Orangensaft.", answer: "trinkt"
+    },
+    {
+        word: "kommen", translation: "venir / proceder",
+        forms: ["komme", "kommst", "kommt", "kommen", "kommt", "kommen"],
+        examples: ["Ich komme aus Kolumbien.", "Woher kommst du?", "Sie kommen aus Polen."],
+        task: "Magdalena ___ aus Polen.", answer: "kommt"
+    },
+    {
+        word: "hören", translation: "escuchar",
+        forms: ["höre", "hörst", "hört", "hören", "hört", "hören"],
+        examples: ["Ich höre Musik.", "Hörst du die Nummer?", "Wir hören einen Dialog."],
+        task: "Ihr ___ die Zahlen.", answer: "hört"
+    },
+    {
+        word: "lesen", translation: "leer",
+        forms: ["lese", "liest", "liest", "lesen", "lest", "lesen"],
+        examples: ["Ich lese die Biografie.", "Du liest das Menü.", "Wir lesen den Dialog."],
+        task: "Er ___ ein Buch.", answer: "liest"
+    },
+    {
+        word: "sprechen", translation: "hablar",
+        forms: ["spreche", "sprichst", "spricht", "sprechen", "sprecht", "sprechen"],
+        examples: ["Ich spreche Spanisch.", "Sprichst du Deutsch?", "Sie spricht Polnisch."],
+        task: "Welche Sprachen ___ Sie?", answer: "sprechen"
+    },
+    {
+        word: "verstehen", translation: "entender",
+        forms: ["verstehe", "verstehst", "versteht", "verstehen", "versteht", "verstehen"],
+        examples: ["Ich verstehe die Frage.", "Verstehst du Deutsch?", "Wir verstehen die Nummer."],
+        task: "Du ___ den Dialog.", answer: "verstehst"
+    },
+    {
+        word: "sein", translation: "ser / estar",
+        forms: ["bin", "bist", "ist", "sind", "seid", "sind"],
+        examples: ["Ich bin die Lehrerin.", "Du bist meine Freundin.", "Sie ist meine Oma."],
+        task: "Wir ___ in Bogotá.", answer: "sind"
+    }
 ];
 
 
@@ -5463,10 +6025,11 @@ document
                 return `
                     <article
                         class="verb-card ${lessonColors[index % lessonColors.length]}"
-                        data-word="${verb[0]}"
+                        data-index="${index}"
+                        data-word="${verb.word}"
                     >
-                        <b>${verb[0]}</b>
-                        <span>${verb[1]}</span>
+                        <b>${verb.word}</b>
+                        <span>${verb.translation}</span>
                     </article>
                 `;
 
@@ -5484,14 +6047,45 @@ document
             "click",
             () => {
 
-                speakGerman(
-                    card.dataset.word
-                );
+                selectVerb(Number(card.dataset.index));
 
             }
         );
 
     });
+
+function selectVerb(index) {
+    const verb = verbs[index];
+
+    document.querySelectorAll(".verb-card").forEach((card, cardIndex) => {
+        card.classList.toggle("active", cardIndex === index);
+    });
+
+    document.getElementById("verbWeekTitle").textContent =
+        `Verb der Woche: ${verb.word.toUpperCase()}`;
+
+    document.getElementById("conjugationBody").innerHTML = pronouns.map((pronoun, row) => `
+        <tr><td>${pronoun}</td><td>${verb.forms[row]}</td></tr>
+    `).join("");
+
+    document.getElementById("verbExamples").innerHTML = verb.examples.map(example => `
+        <p class="sentence" data-speak="${example}">${example}</p>
+    `).join("");
+
+    document.getElementById("verbTask").textContent = verb.task;
+    document.getElementById("verbTaskAnswer").textContent = verb.answer;
+    document.getElementById("verbTaskAnswer").hidden = true;
+
+    speakGerman(verb.word);
+}
+
+document.getElementById("showVerbTask").addEventListener("click", () => {
+    const answer = document.getElementById("verbTaskAnswer");
+    answer.hidden = false;
+    speakGerman(answer.textContent);
+});
+
+selectVerb(8);
 
 
 /* =====================================================
@@ -5834,30 +6428,28 @@ loadMatchingGame();
    NUMMERN
 ===================================================== */
 
-const numbers = [
+const smallNumbers = ["null", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"];
+const tensWords = {20: "zwanzig", 30: "dreißig", 40: "vierzig", 50: "fünfzig", 60: "sechzig", 70: "siebzig", 80: "achtzig", 90: "neunzig"};
 
-    [1, "eins"],
-    [2, "zwei"],
-    [3, "drei"],
-    [4, "vier"],
-    [5, "fünf"],
-    [6, "sechs"],
-    [7, "sieben"],
-    [8, "acht"],
-    [9, "neun"],
-    [10, "zehn"],
-    [11, "elf"],
-    [12, "zwölf"],
-    [13, "dreizehn"],
-    [14, "vierzehn"],
-    [15, "fünfzehn"],
-    [16, "sechzehn"],
-    [17, "siebzehn"],
-    [18, "achtzehn"],
-    [19, "neunzehn"],
-    [20, "zwanzig"]
+function numberToGerman(number) {
+    if (number < 20) return smallNumbers[number];
+    if (number < 100) {
+        const tens = Math.floor(number / 10) * 10;
+        const unit = number % 10;
+        if (!unit) return tensWords[tens];
+        return `${unit === 1 ? "ein" : smallNumbers[unit]}und${tensWords[tens]}`;
+    }
+    if (number < 1000) {
+        const hundreds = Math.floor(number / 100);
+        const rest = number % 100;
+        const prefix = hundreds === 1 ? "einhundert" : `${smallNumbers[hundreds]}hundert`;
+        return rest ? prefix + numberToGerman(rest) : prefix;
+    }
+    if (number === 1000) return "tausend";
+    return String(number);
+}
 
-];
+const numbers = Array.from({length: 20}, (_, index) => [index + 1, numberToGerman(index + 1)]);
 
 
 document
@@ -6023,6 +6615,153 @@ document
 
 loadNumberQuiz();
 
+const builderNumbers = [21, 24, 32, 37, 46, 58, 64, 71, 83, 92, 99];
+
+document.getElementById("builderChoices").innerHTML = builderNumbers.map(number => `
+    <button data-builder="${number}">${number}</button>
+`).join("");
+
+function showNumberConstruction(number) {
+    const unit = number % 10;
+    const tens = Math.floor(number / 10) * 10;
+    const unitWord = unit === 1 ? "ein" : smallNumbers[unit];
+    document.getElementById("builderValue").textContent = number;
+    document.getElementById("builderUnit").textContent = unitWord;
+    document.getElementById("builderTens").textContent = tensWords[tens];
+    document.querySelector(".number-arrow").textContent = `${unitWord} → und → ${tensWords[tens]}`;
+    document.getElementById("builderWord").textContent = numberToGerman(number);
+    speakGerman(numberToGerman(number));
+}
+
+document.querySelectorAll("[data-builder]").forEach(button => {
+    button.addEventListener("click", () => showNumberConstruction(Number(button.dataset.builder)));
+});
+showNumberConstruction(24);
+
+document.getElementById("decadeFamilies").innerHTML = [20, 30].map(start => `
+    <h3>${start === 20 ? "20 · zwanzig" : "30 · dreißig"}</h3>
+    <div class="decade-family">
+        ${Array.from({length: 10}, (_, index) => start + index).map(number => `
+            <div class="mini-number" data-speak="${numberToGerman(number)}">
+                <b>${number}</b><span>${numberToGerman(number)}</span>
+            </div>
+        `).join("")}
+    </div>
+`).join("");
+
+const roundNumbers = [40, 50, 60, 70, 80, 90, 100, 1000];
+document.getElementById("roundNumbers").innerHTML = roundNumbers.map(number => `
+    <div class="mini-number" data-speak="${numberToGerman(number)}">
+        <b>${number}</b><span>${numberToGerman(number)}</span>
+    </div>
+`).join("");
+
+const numberWritingItems = [
+    {prompt: "einhundert", answer: "100", type: "number"},
+    {prompt: "fünfhundert", answer: "500", type: "number"},
+    {prompt: "achthundert", answer: "800", type: "number"},
+    {prompt: "92", answer: "zweiundneunzig", type: "word"},
+    {prompt: "920", answer: "neunhundertzwanzig", type: "word"},
+    {prompt: "666", answer: "sechshundertsechsundsechzig", type: "word"}
+];
+
+function normalizeGerman(value) {
+    return value.trim().toLowerCase().replace(/\s+/g, "").replace(/ß/g, "ss");
+}
+
+function loadNumberWriting() {
+    document.getElementById("numberWritingExercise").innerHTML = numberWritingItems.map((item, index) => `
+        <label class="number-question">
+            <b>${item.prompt}</b>
+            <span>${item.type === "number" ? "→ escribe la cifra" : "→ escribe en alemán"}</span>
+            <input data-number-answer="${index}" autocomplete="off">
+        </label>
+    `).join("");
+    document.getElementById("numberWritingFeedback").textContent = "";
+}
+
+document.getElementById("checkNumberWriting").addEventListener("click", () => {
+    let correct = 0;
+    document.querySelectorAll("[data-number-answer]").forEach(input => {
+        const item = numberWritingItems[Number(input.dataset.numberAnswer)];
+        const isCorrect = normalizeGerman(input.value) === normalizeGerman(item.answer);
+        input.style.background = isCorrect ? "#dff8df" : "#ffddea";
+        if (isCorrect) correct += 1;
+    });
+    document.getElementById("numberWritingFeedback").textContent =
+        correct === numberWritingItems.length ? "Alles richtig! ✓" : `${correct} / ${numberWritingItems.length} richtig · corrige los campos rosados.`;
+});
+document.getElementById("resetNumberWriting").addEventListener("click", loadNumberWriting);
+loadNumberWriting();
+
+const phoneDigits = "491639268393";
+const phoneSpokenDigits = "vier neun, eins sechs drei neun zwei sechs acht drei neun drei";
+
+document.getElementById("playPhoneMessage").addEventListener("click", () => {
+    speakGerman(`Hallo Titus. Bitte ruf mich an. Meine Nummer ist ${phoneSpokenDigits}. Danke, tschüss!`);
+});
+
+document.getElementById("playPhoneDigits").addEventListener("click", () => {
+    speakGerman(phoneSpokenDigits);
+});
+
+document.getElementById("checkPhoneAnswer").addEventListener("click", () => {
+    const answer = document.getElementById("phoneAnswer").value.replace(/\D/g, "");
+    const correct = answer === phoneDigits;
+    document.getElementById("phoneFeedback").textContent = correct
+        ? "Richtig! 49 1639268393 ✓"
+        : "Noch einmal · escucha especialmente los grupos 49 y 1639268393.";
+});
+
+const services = [
+    {name: "Pizzeria Sonnenrad", icon: "🍕", phone: "030 2400 2211", color: "yellow", menu: true},
+    {name: "Apotheke am Mond", icon: "💊", phone: "030 2400 2233", color: "green"},
+    {name: "Taxi Blitz", icon: "🚕", phone: "030 2400 2255", color: "orange"},
+    {name: "Supermarkt Hallo", icon: "🛒", phone: "030 2400 2277", color: "blue"}
+];
+
+document.getElementById("serviceAds").innerHTML = services.map((service, index) => `
+    <button class="service-ad ${service.color}" data-service="${index}">
+        <span class="ad-icon">${service.icon}</span>
+        <strong>${service.name}</strong>
+        <span>☎ ${service.phone}</span>
+        ${service.menu ? "<small>Klicken: Speisekarte öffnen</small>" : "<small>Klicken: Nummer hören</small>"}
+    </button>
+`).join("");
+
+const pizzaItems = [
+    ["🍕", "Pizza Margherita", "8 €"],
+    ["🍄", "Pizza Funghi", "9 €"],
+    ["🥦", "Pizza Gemüse", "10 €"],
+    ["💧", "Wasser", "2 €"],
+    ["🍊", "Orangensaft", "3 €"],
+    ["☕", "Kaffee", "2,50 €"]
+];
+
+document.getElementById("pizzaMenuGrid").innerHTML = pizzaItems.map(item => `
+    <div class="menu-item" data-speak="${item[1]}, ${item[2]}">
+        <b>${item[0]} ${item[1]}</b><span>${item[2]}</span>
+    </div>
+`).join("");
+
+document.querySelectorAll("[data-service]").forEach(button => {
+    button.addEventListener("click", () => {
+        const service = services[Number(button.dataset.service)];
+        speakGerman(`${service.name}. Telefonnummer ${service.phone.split("").join(" ")}`);
+        if (service.menu) {
+            const menu = document.getElementById("pizzaMenu");
+            menu.hidden = !menu.hidden;
+        }
+    });
+});
+
+document.addEventListener("click", event => {
+    const speakable = event.target.closest(".mini-number[data-speak], .menu-item[data-speak]");
+    if (speakable) {
+        speakGerman(speakable.dataset.speak);
+    }
+});
+
 
 /* =====================================================
    RESPUESTA FINAL
@@ -6050,3 +6789,4 @@ document
 </body>
 
 </html>
+
