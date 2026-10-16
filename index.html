@@ -2332,6 +2332,25 @@ button {
 }
 
 /* =====================================================
+   TAFEL · TABLERO DE CLASE
+===================================================== */
+
+.board-card { padding: 22px; background: var(--blue); }
+.board-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 18px; }
+.board-toolbar button, .board-toolbar label { min-height: 44px; padding: 10px 15px; border: 2px solid var(--ink); border-radius: 999px; background: white; box-shadow: 3px 3px 0 var(--ink); font-weight: 900; cursor: pointer; }
+.board-toolbar button.active { background: var(--ink); color: white; }
+.board-toolbar label { display: flex; align-items: center; gap: 8px; }
+.board-toolbar input[type="color"] { width: 32px; height: 28px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.board-toolbar input[type="range"] { width: 110px; }
+.class-board { position: relative; width: 100%; min-height: 620px; overflow: hidden; border: 3px solid var(--ink); border-radius: 24px; background-color: #fffdf5; background-image: linear-gradient(rgba(23,23,23,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(23,23,23,.07) 1px, transparent 1px); background-size: 28px 28px; box-shadow: 7px 7px 0 var(--ink); }
+.board-text { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; min-height: 620px; resize: none; padding: 35px; border: 0; outline: 0; background: transparent; color: var(--ink); font: 700 clamp(20px, 2.2vw, 32px)/1.55 Arial, Helvetica, sans-serif; }
+.board-text::placeholder { color: rgba(23,23,23,.38); }
+.drawing-canvas { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; touch-action: none; pointer-events: none; }
+.class-board.draw-mode .drawing-canvas { pointer-events: auto; cursor: crosshair; }
+.class-board.draw-mode .board-text { pointer-events: none; }
+.board-status { margin: 16px 0 0; font-weight: 900; }
+
+/* =====================================================
    WORTSCHATZ · ALPHABET
 ===================================================== */
 
@@ -2459,6 +2478,9 @@ button {
 
 @media (max-width: 520px) {
 
+    .class-board,
+    .board-text { min-height: 500px; }
+
     .alphabet-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .alphabet-grid button { min-height: 95px; font-size: 36px; }
 
@@ -2552,6 +2574,13 @@ button {
         data-view="start"
     >
         START
+    </button>
+
+    <button
+        class="tab"
+        data-view="tafel"
+    >
+        TAFEL
     </button>
 
     <button
@@ -3154,6 +3183,45 @@ button {
 
     </div>
 
+</section>
+
+
+<!-- =====================================================
+     TAFEL · TABLERO DE CLASE
+===================================================== -->
+
+<section class="view" id="tafel">
+    <div class="eyebrow">Notizen, Aufgaben und Zeichnungen</div>
+    <h1 class="section-title">Die Tafel</h1>
+    <p class="big">Schreiben + zeichnen</p>
+    <p>Escribe las tareas con el teclado o cambia a dibujo para marcar, subrayar y explicar directamente sobre el tablero.</p>
+
+    <article class="card full board-card">
+        <div class="board-toolbar" aria-label="Werkzeuge der Tafel">
+            <button class="active" id="boardTextMode">⌨️ TEXT</button>
+            <button id="boardDrawMode">✏️ ZEICHNEN</button>
+            <button id="boardEraser">🧽 RADIERGUMMI</button>
+            <label>FARBE <input type="color" id="boardColor" value="#171717" aria-label="Farbe"></label>
+            <label>DICKE <input type="range" id="boardSize" min="2" max="30" value="5" aria-label="Strichstärke"></label>
+            <button id="boardUndo">↶ RÜCKGÄNGIG</button>
+            <button id="boardClearDrawing">ZEICHNUNG LÖSCHEN</button>
+            <button id="boardClearAll">ALLES LÖSCHEN</button>
+        </div>
+
+        <div class="class-board" id="classBoard">
+            <textarea
+                class="board-text"
+                id="boardText"
+                spellcheck="false"
+                placeholder="HAUSAUFGABEN · TAREAS\n\n1. Schreibe fünf Sätze.\n2. Buchstabiere deinen Namen.\n3. Höre das Lied noch einmal."
+                aria-label="Texto del tablero"
+            ></textarea>
+            <canvas class="drawing-canvas" id="drawingCanvas" aria-label="Zona para dibujar"></canvas>
+        </div>
+
+        <p class="board-status" id="boardStatus" aria-live="polite">Textmodus · modo texto</p>
+        <p class="note">El contenido se guarda automáticamente en este navegador. En modo dibujo también puedes usar el dedo sobre una pantalla táctil.</p>
+    </article>
 </section>
 
 
@@ -6989,6 +7057,169 @@ document.addEventListener("click", event => {
     if (speakable) {
         speakGerman(speakable.dataset.speak);
     }
+});
+
+
+/* =====================================================
+   TAFEL · TEXTO Y DIBUJO
+===================================================== */
+
+const classBoard = document.getElementById("classBoard");
+const boardText = document.getElementById("boardText");
+const drawingCanvas = document.getElementById("drawingCanvas");
+const drawingContext = drawingCanvas.getContext("2d");
+const boardStatus = document.getElementById("boardStatus");
+const boardTextMode = document.getElementById("boardTextMode");
+const boardDrawMode = document.getElementById("boardDrawMode");
+const boardEraser = document.getElementById("boardEraser");
+let boardTool = "text";
+let boardDrawing = false;
+let boardLastPoint = null;
+let boardHistory = [];
+let boardSaveTimer;
+let boardCanvasReady = false;
+
+function setBoardTool(tool) {
+    boardTool = tool;
+    classBoard.classList.toggle("draw-mode", tool !== "text");
+    [boardTextMode, boardDrawMode, boardEraser].forEach(button => button.classList.remove("active"));
+    const activeButton = tool === "text" ? boardTextMode : tool === "draw" ? boardDrawMode : boardEraser;
+    activeButton.classList.add("active");
+    boardStatus.textContent = tool === "text"
+        ? "Textmodus · modo texto"
+        : tool === "draw"
+            ? "Zeichenmodus · modo dibujo"
+            : "Radiergummi · borrador";
+    if (tool === "text") boardText.focus();
+}
+
+function boardCanvasSnapshot() {
+    return drawingCanvas.width ? drawingCanvas.toDataURL("image/png") : "";
+}
+
+function restoreBoardDrawing(source, saveAfter = false) {
+    const width = drawingCanvas.clientWidth;
+    const height = drawingCanvas.clientHeight;
+    if (!width || !height) return;
+    const ratio = Math.max(1, window.devicePixelRatio || 1);
+    drawingCanvas.width = Math.round(width * ratio);
+    drawingCanvas.height = Math.round(height * ratio);
+    drawingContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+    drawingContext.lineCap = "round";
+    drawingContext.lineJoin = "round";
+    boardCanvasReady = true;
+    if (source) {
+        const image = new Image();
+        image.onload = () => {
+            drawingContext.drawImage(image, 0, 0, width, height);
+            if (saveAfter) saveBoard();
+        };
+        image.src = source;
+    } else if (saveAfter) {
+        saveBoard();
+    }
+}
+
+function prepareBoardCanvas() {
+    if (!drawingCanvas.clientWidth || !drawingCanvas.clientHeight) return;
+    const current = boardCanvasReady
+        ? boardCanvasSnapshot()
+        : localStorage.getItem("deutschBoardDrawing") || "";
+    restoreBoardDrawing(current);
+}
+
+function saveBoard() {
+    try {
+        localStorage.setItem("deutschBoardText", boardText.value);
+        localStorage.setItem("deutschBoardDrawing", boardCanvasSnapshot());
+        boardStatus.textContent = `${boardStatus.textContent.split(" · gespeichert")[0]} · gespeichert ✓`;
+    } catch (error) {
+        boardStatus.textContent = "No fue posible guardar el tablero en este navegador.";
+    }
+}
+
+function rememberBoardDrawing() {
+    boardHistory.push(boardCanvasSnapshot());
+    if (boardHistory.length > 20) boardHistory.shift();
+}
+
+function boardPoint(event) {
+    const rectangle = drawingCanvas.getBoundingClientRect();
+    return {x: event.clientX - rectangle.left, y: event.clientY - rectangle.top};
+}
+
+function startBoardDrawing(event) {
+    if (boardTool === "text") return;
+    event.preventDefault();
+    rememberBoardDrawing();
+    boardDrawing = true;
+    boardLastPoint = boardPoint(event);
+    drawingCanvas.setPointerCapture(event.pointerId);
+}
+
+function moveBoardDrawing(event) {
+    if (!boardDrawing || boardTool === "text") return;
+    event.preventDefault();
+    const point = boardPoint(event);
+    drawingContext.save();
+    drawingContext.globalCompositeOperation = boardTool === "erase" ? "destination-out" : "source-over";
+    drawingContext.strokeStyle = document.getElementById("boardColor").value;
+    drawingContext.lineWidth = Number(document.getElementById("boardSize").value) * (boardTool === "erase" ? 2.4 : 1);
+    drawingContext.beginPath();
+    drawingContext.moveTo(boardLastPoint.x, boardLastPoint.y);
+    drawingContext.lineTo(point.x, point.y);
+    drawingContext.stroke();
+    drawingContext.restore();
+    boardLastPoint = point;
+}
+
+function stopBoardDrawing(event) {
+    if (!boardDrawing) return;
+    boardDrawing = false;
+    boardLastPoint = null;
+    if (event.pointerId !== undefined && drawingCanvas.hasPointerCapture(event.pointerId)) {
+        drawingCanvas.releasePointerCapture(event.pointerId);
+    }
+    saveBoard();
+}
+
+boardTextMode.addEventListener("click", () => setBoardTool("text"));
+boardDrawMode.addEventListener("click", () => setBoardTool("draw"));
+boardEraser.addEventListener("click", () => setBoardTool("erase"));
+drawingCanvas.addEventListener("pointerdown", startBoardDrawing);
+drawingCanvas.addEventListener("pointermove", moveBoardDrawing);
+drawingCanvas.addEventListener("pointerup", stopBoardDrawing);
+drawingCanvas.addEventListener("pointercancel", stopBoardDrawing);
+
+boardText.addEventListener("input", () => {
+    clearTimeout(boardSaveTimer);
+    boardSaveTimer = setTimeout(saveBoard, 350);
+});
+
+document.getElementById("boardUndo").addEventListener("click", () => {
+    const previous = boardHistory.pop();
+    if (previous !== undefined) restoreBoardDrawing(previous, true);
+});
+
+document.getElementById("boardClearDrawing").addEventListener("click", () => {
+    rememberBoardDrawing();
+    restoreBoardDrawing("", true);
+});
+
+document.getElementById("boardClearAll").addEventListener("click", () => {
+    if (!window.confirm("¿Quieres borrar todo el texto y el dibujo del tablero?")) return;
+    boardText.value = "";
+    boardHistory = [];
+    restoreBoardDrawing("", true);
+});
+
+document.querySelector('[data-view="tafel"]').addEventListener("click", () => {
+    requestAnimationFrame(prepareBoardCanvas);
+});
+
+boardText.value = localStorage.getItem("deutschBoardText") || "";
+window.addEventListener("resize", () => {
+    if (document.getElementById("tafel").classList.contains("active")) prepareBoardCanvas();
 });
 
 
