@@ -1,0 +1,1534 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tagestest · Deutschunterricht</title>
+<style>
+:root {
+    --ink: #171717;
+    --paper: #fffdf5;
+    --pink: #ff9bc8;
+    --yellow: #ffd23f;
+    --green: #66cf70;
+    --orange: #ff6b35;
+    --blue: #4bb7e8;
+    --violet: #9878ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at 10% 5%, rgba(255,155,200,.36), transparent 24rem),
+        radial-gradient(circle at 94% 18%, rgba(75,183,232,.32), transparent 26rem),
+        var(--paper);
+    color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button, input { font: inherit; }
+
+.page {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 26px 0 80px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: var(--ink);
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.4fr .6fr;
+    gap: 24px;
+    align-items: stretch;
+    margin-bottom: 24px;
+}
+
+.hero-copy,
+.hero-icon,
+.scope-panel,
+.student-panel,
+.question-card,
+.result-panel {
+    border: 3px solid var(--ink);
+    border-radius: 28px;
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.hero-copy {
+    padding: clamp(26px, 5vw, 58px);
+    background: var(--yellow);
+}
+
+.hero-icon {
+    display: grid;
+    place-items: center;
+    min-height: 300px;
+    background: var(--pink);
+    font-size: clamp(100px, 15vw, 190px);
+}
+
+.eyebrow {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 12px 0;
+    font-size: clamp(48px, 8vw, 98px);
+    line-height: .9;
+    letter-spacing: -.055em;
+}
+
+h2 { margin-top: 0; }
+
+.lead {
+    max-width: 680px;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.45;
+}
+
+.scope-panel {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 22px 24px;
+    background: white;
+}
+
+.scope-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.scope-chip {
+    padding: 8px 11px;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: #e3ffd8;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.scope-note {
+    max-width: 300px;
+    padding: 14px 16px;
+    border: 2px dashed var(--ink);
+    border-radius: 16px;
+    background: #fff0b8;
+    line-height: 1.45;
+}
+
+.student-panel {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    align-items: end;
+    margin-bottom: 28px;
+    padding: 24px;
+    background: white;
+}
+
+.student-panel label {
+    display: grid;
+    gap: 8px;
+    font-weight: 900;
+}
+
+.student-panel input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 2px solid var(--ink);
+    border-radius: 13px;
+    background: #fffef9;
+}
+
+.date-box {
+    min-width: 210px;
+    padding: 13px 16px;
+    border: 2px solid var(--ink);
+    border-radius: 13px;
+    background: var(--blue);
+    font-weight: 900;
+}
+
+.progress-wrap {
+    position: sticky;
+    z-index: 5;
+    top: 10px;
+    margin: 0 0 24px;
+    padding: 12px;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: white;
+    box-shadow: 4px 4px 0 var(--ink);
+}
+
+.progress-track {
+    height: 16px;
+    overflow: hidden;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: #eee;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--yellow), var(--pink));
+    transition: width .25s ease;
+}
+
+.progress-label {
+    display: block;
+    margin-top: 6px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.question-card {
+    min-width: 0;
+    padding: 22px;
+    background: white;
+}
+
+.question-card:nth-child(6n + 1) { background: #ffe2f0; }
+.question-card:nth-child(6n + 2) { background: #fff0b8; }
+.question-card:nth-child(6n + 3) { background: #e3ffd8; }
+.question-card:nth-child(6n + 4) { background: #ffe0d3; }
+.question-card:nth-child(6n + 5) { background: #d8ecff; }
+.question-card:nth-child(6n) { background: #e9e0ff; }
+
+.question-number {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    background: white;
+    font-weight: 900;
+}
+
+.question-card legend {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 0;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1.3;
+}
+
+.topic {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .65;
+}
+
+.options {
+    display: grid;
+    gap: 9px;
+}
+
+.option {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 12px;
+    border: 2px solid var(--ink);
+    border-radius: 13px;
+    background: rgba(255,255,255,.9);
+    cursor: pointer;
+}
+
+.option:hover { transform: translateY(-1px); }
+.option:has(input:checked) { background: var(--yellow); }
+.option input { margin-top: 3px; accent-color: var(--violet); }
+
+.submit-area {
+    margin-top: 30px;
+    padding: 26px;
+    border: 3px solid var(--ink);
+    border-radius: 28px;
+    background: var(--ink);
+    color: white;
+    text-align: center;
+}
+
+.primary-button,
+.secondary-button {
+    min-height: 50px;
+    padding: 13px 20px;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    box-shadow: 5px 5px 0 var(--ink);
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.primary-button { background: var(--green); }
+.secondary-button { background: white; }
+.primary-button:hover, .secondary-button:hover { transform: translateY(-2px); }
+
+.form-message {
+    min-height: 24px;
+    margin: 12px 0 0;
+    color: var(--yellow);
+    font-weight: 900;
+}
+
+.result-panel {
+    margin-top: 30px;
+    padding: clamp(28px, 6vw, 64px);
+    background: linear-gradient(135deg, var(--green), #c6ffae);
+    text-align: center;
+}
+
+.score {
+    margin: 12px 0;
+    font-size: clamp(68px, 14vw, 150px);
+    font-weight: 1000;
+    line-height: .9;
+    letter-spacing: -.06em;
+}
+
+.result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.result-note {
+    max-width: 680px;
+    margin: 18px auto 0;
+    line-height: 1.5;
+}
+
+[hidden] { display: none !important; }
+
+@media (max-width: 760px) {
+    .hero, .quiz-grid, .scope-panel, .student-panel { grid-template-columns: 1fr; }
+    .hero-icon { min-height: 210px; }
+    .date-box { min-width: 0; }
+}
+
+@media print {
+    .back-link, .progress-wrap, .submit-area, .result-actions { display: none !important; }
+    body { background: white; }
+    .page { width: 100%; }
+    .question-card { break-inside: avoid; box-shadow: none; }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+    <a class="back-link" href="index.html">← ZURÜCK ZUM UNTERRICHT</a>
+
+    <header class="hero">
+        <div class="hero-copy">
+            <div class="eyebrow">Deutsch · Tagestest</div>
+            <h1>Was kannst du schon?</h1>
+            <p class="lead">
+                Cada día aparecen 20 preguntas seleccionadas de un banco amplio
+                que reúne todos los temas vistos hasta ahora.
+            </p>
+            <p><b>Wichtig:</b> al finalizar verás tu puntaje, pero no las correcciones.</p>
+        </div>
+        <div class="hero-icon" aria-hidden="true">🧠</div>
+    </header>
+
+    <section class="scope-panel" aria-label="Temas incluidos en el test">
+        <div>
+            <div class="eyebrow">In diesem Test · en este test</div>
+            <div class="scope-list">
+                <span class="scope-chip">Personal Data</span>
+                <span class="scope-chip">Begrüßung</span>
+                <span class="scope-chip">Wie geht’s?</span>
+                <span class="scope-chip">W‑Fragen</span>
+                <span class="scope-chip">Sprache im Kurs</span>
+                <span class="scope-chip">Personalpronomen</span>
+                <span class="scope-chip">Nomen und Artikel</span>
+                <span class="scope-chip">Verben</span>
+                <span class="scope-chip">Trennbare Verben</span>
+                <span class="scope-chip">Die Zeit</span>
+                <span class="scope-chip">Zahlen und Uhrzeit</span>
+                <span class="scope-chip">Tageszeiten</span>
+                <span class="scope-chip">Pizzeria</span>
+                <span class="scope-chip">Länder</span>
+                <span class="scope-chip">Sehen und Hören</span>
+                <span class="scope-chip">Wortschatz + ABC</span>
+                <span class="scope-chip">Aussprache</span>
+                <span class="scope-chip">Wochenlied</span>
+            </div>
+        </div>
+        <div class="scope-note">
+            <b>Alle Themen · todos los temas</b><br>
+            Las preguntas y sus opciones cambian cada día.
+        </div>
+    </section>
+
+    <section class="student-panel" aria-label="Datos de la estudiante">
+        <label>
+            Name der Schülerin · nombre
+            <input id="studentName" type="text" autocomplete="name" placeholder="Dein Name" required>
+        </label>
+        <div class="date-box" id="testDate"></div>
+    </section>
+
+    <div class="progress-wrap" aria-label="Progreso del test">
+        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+        <span class="progress-label" id="progressLabel">0 beantwortet</span>
+    </div>
+
+    <form id="dailyTest">
+        <div class="quiz-grid" id="quizGrid"></div>
+
+        <div class="submit-area">
+            <button class="primary-button" id="submitTest" type="submit">TEST ABGEBEN →</button>
+            <p>El puntaje aparecerá sin indicar cuáles respuestas estuvieron bien o mal.</p>
+            <p class="form-message" id="formMessage" aria-live="polite"></p>
+        </div>
+    </form>
+
+    <section class="result-panel" id="resultPanel" hidden aria-live="polite">
+        <div class="eyebrow">Dein Ergebnis · tu resultado</div>
+        <div class="score" id="scoreText"></div>
+        <h2 id="resultTitle">Test gespeichert</h2>
+        <p class="result-note" id="resultSummary"></p>
+        <p class="result-note">
+            No se muestran las correcciones. Descarga el informe y envíaselo a la profesora:
+            contiene tus respuestas, fecha y puntaje para que ella pueda revisarlo.
+        </p>
+        <div class="result-actions">
+            <button class="secondary-button" id="downloadReport" type="button">ERGEBNIS HERUNTERLADEN</button>
+            <a class="secondary-button" href="index.html" style="color:var(--ink); text-decoration:none">ZURÜCK ZUR KLASSE</a>
+        </div>
+    </section>
+</main>
+
+<script>
+const questionBank = [
+    {
+        topic: "Begrüßung",
+        question: "Es ist früh am Morgen. Was sagst du?",
+        options: ["Guten Morgen!", "Guten Abend!", "Gute Nacht!"],
+        answer: "Guten Morgen!"
+    },
+    {
+        topic: "Wie geht’s?",
+        question: "¿Cómo preguntas formalmente «¿Cómo está usted?»?",
+        options: ["Wie geht es Ihnen?", "Wie geht es dir?", "Wer sind Sie?"],
+        answer: "Wie geht es Ihnen?"
+    },
+    {
+        topic: "Wie geht’s?",
+        question: "Welche Antwort ist richtig? · ¿Qué respuesta es correcta?",
+        options: ["Mir geht’s gut.", "Ich bin gut.", "Mich geht’s gut."],
+        answer: "Mir geht’s gut."
+    },
+    {
+        topic: "Begrüßung",
+        question: "Es ist 19 Uhr. Welche Begrüßung passt?",
+        options: ["Guten Abend!", "Guten Morgen!", "Gute Nacht!"],
+        answer: "Guten Abend!"
+    },
+    {
+        topic: "Wie geht’s?",
+        question: "Wie antwortest du informell? — Gut, ___?",
+        options: ["und dir", "und Ihnen", "und Sie"],
+        answer: "und dir"
+    },
+    {
+        topic: "W‑Fragen",
+        question: "___ kommst du? — Ich komme aus Kolumbien.",
+        options: ["Woher", "Wo", "Wer"],
+        answer: "Woher"
+    },
+    {
+        topic: "W‑Fragen",
+        question: "___ wohnst du? — Ich wohne in Bogotá.",
+        options: ["Wo", "Woher", "Was"],
+        answer: "Wo"
+    },
+    {
+        topic: "W‑Fragen",
+        question: "Welche Frage ist in der formellen Anrede richtig?",
+        options: ["Wie heißen Sie?", "Wie heißt Sie?", "Wie heißt du?"],
+        answer: "Wie heißen Sie?"
+    },
+    {
+        topic: "W‑Fragen",
+        question: "___ kommt ihr? — Wir kommen aus Deutschland.",
+        options: ["Woher", "Wo", "Wer"],
+        answer: "Woher"
+    },
+    {
+        topic: "W‑Fragen",
+        question: "¿Cuál es la forma natural de preguntar qué idioma habla alguien?",
+        options: ["Welche Sprache sprichst du?", "Was Sprache sprichst du?", "Woher sprichst du?"],
+        answer: "Welche Sprache sprichst du?"
+    },
+    {
+        topic: "Sprache im Kurs",
+        question: "No entendiste algo. ¿Qué dices formalmente?",
+        options: [
+            "Das verstehe ich nicht. Können Sie das bitte wiederholen?",
+            "Das verstehe ich nicht. Kannst Sie wiederholen?",
+            "Wie kommen Sie das bitte?"
+        ],
+        answer: "Das verstehe ich nicht. Können Sie das bitte wiederholen?"
+    },
+    {
+        topic: "Sprache im Kurs",
+        question: "¿Cómo pides formalmente que deletreen una palabra?",
+        options: [
+            "Können Sie das bitte buchstabieren?",
+            "Können du das bitte buchstabieren?",
+            "Was buchstabieren Sie?"
+        ],
+        answer: "Können Sie das bitte buchstabieren?"
+    },
+    {
+        topic: "Sprache im Kurs",
+        question: "Quieres que la otra persona repita. ¿Qué expresión breve corresponde?",
+        options: ["Entschuldigung, wie bitte?", "Guten Appetit!", "Sehr gern!"],
+        answer: "Entschuldigung, wie bitte?"
+    },
+    {
+        topic: "Personal Data",
+        question: "Müller es un apellido. ¿En qué campo se escribe?",
+        options: ["Nachname", "Vorname", "Ort"],
+        answer: "Nachname"
+    },
+    {
+        topic: "Personal Data",
+        question: "¿Qué campo corresponde a Dresden?",
+        options: ["Ort", "Straße", "Postleitzahl"],
+        answer: "Ort"
+    },
+    {
+        topic: "Personalpronomen",
+        question: "Magdalena und Beno: ¿qué pronombre corresponde?",
+        options: ["sie", "ihr", "er"],
+        answer: "sie"
+    },
+    {
+        topic: "Personalpronomen",
+        question: "Hablas formalmente con una profesora. ¿Qué pronombre usas?",
+        options: ["Sie", "du", "sie"],
+        answer: "Sie"
+    },
+    {
+        topic: "sein",
+        question: "Ich ___ Laura.",
+        options: ["bin", "bist", "ist"],
+        answer: "bin"
+    },
+    {
+        topic: "sein",
+        question: "Ihr ___ Magdalena und Beno.",
+        options: ["seid", "sind", "ist"],
+        answer: "seid"
+    },
+    {
+        topic: "sein",
+        question: "Carlotta ___ Studentin.",
+        options: ["ist", "bin", "seid"],
+        answer: "ist"
+    },
+    {
+        topic: "wohnen",
+        question: "Ich ___ in Bogotá.",
+        options: ["wohne", "wohnst", "wohnt"],
+        answer: "wohne"
+    },
+    {
+        topic: "wohnen",
+        question: "Wo ___ Sie?",
+        options: ["wohnen", "wohnst", "wohnt"],
+        answer: "wohnen"
+    },
+    {
+        topic: "kommen",
+        question: "Du ___ aus Kolumbien.",
+        options: ["kommst", "komme", "kommt"],
+        answer: "kommst"
+    },
+    {
+        topic: "kommen",
+        question: "Wir ___ aus Kolumbien.",
+        options: ["kommen", "kommt", "kommst"],
+        answer: "kommen"
+    },
+    {
+        topic: "sprechen",
+        question: "Welche Sprachen ___ Sie?",
+        options: ["sprechen", "sprichst", "sprecht"],
+        answer: "sprechen"
+    },
+    {
+        topic: "sprechen",
+        question: "Du ___ Deutsch und Spanisch.",
+        options: ["sprichst", "spreche", "sprecht"],
+        answer: "sprichst"
+    },
+    {
+        topic: "Die Zeit",
+        question: "Was bedeutet «gestern»?",
+        options: ["ayer", "hoy", "mañana"],
+        answer: "ayer"
+    },
+    {
+        topic: "Wochentage",
+        question: "Welcher Tag kommt nach Donnerstag?",
+        options: ["Freitag", "Mittwoch", "Sonntag"],
+        answer: "Freitag"
+    },
+    {
+        topic: "Wochentage",
+        question: "Welche Tage bilden das Wochenende?",
+        options: ["Samstag und Sonntag", "Montag und Dienstag", "Donnerstag und Freitag"],
+        answer: "Samstag und Sonntag"
+    },
+    {
+        topic: "Länder",
+        question: "Welche Sprache spricht man in Frankreich?",
+        options: ["Französisch", "Italienisch", "Portugiesisch"],
+        answer: "Französisch"
+    },
+    {
+        topic: "Länder",
+        question: "¿Cómo se escribe Colombia en alemán?",
+        options: ["Kolumbien", "Kolombien", "Columbien"],
+        answer: "Kolumbien"
+    },
+    {
+        topic: "Länder",
+        question: "Ordne richtig zu · relaciona correctamente:",
+        options: ["Türkei — Türkisch", "Japan — Chinesisch", "Brasilien — Spanisch"],
+        answer: "Türkei — Türkisch"
+    },
+    {
+        topic: "Aussprache",
+        question: "Wie klingt «ie» normalerweise?",
+        options: ["como una i larga", "como ai", "como oi"],
+        answer: "como una i larga"
+    },
+    {
+        topic: "Aussprache",
+        question: "Wie klingt «ei» normalerweise?",
+        options: ["parecido a ai", "parecido a oi", "como una e larga"],
+        answer: "parecido a ai"
+    },
+    {
+        topic: "Aussprache",
+        question: "Welche Kombination klingt ungefähr wie «oi»?",
+        options: ["eu / äu", "ie", "aa"],
+        answer: "eu / äu"
+    },
+    {
+        topic: "Buchstabieren",
+        question: "Welche Buchstabierung passt zu BERLIN?",
+        options: ["B–E–R–L–I–N", "B–I–R–L–E–N", "P–E–R–L–I–N"],
+        answer: "B–E–R–L–I–N"
+    },
+    {
+        topic: "Lesen",
+        question: "Was bedeutet «Ich komme aus Deutschland»?",
+        options: ["Vengo de Alemania", "Vivo en Alemania", "Hablo alemán"],
+        answer: "Vengo de Alemania"
+    },
+    {
+        topic: "Alphabet",
+        question: "Welcher Buchstabe kommt nach M?",
+        options: ["N", "L", "O"],
+        answer: "N"
+    }
+];
+
+questionBank.push(
+    {
+        topic: "Wochenlied",
+        question: "Was bedeutet der Titel «Wann strahlst du?»?",
+        options: ["¿Cuándo brillas?", "¿Dónde vives?", "¿Qué escuchas?"],
+        answer: "¿Cuándo brillas?"
+    },
+    {
+        topic: "Wochenlied",
+        question: "Wer singt «Wann strahlst du?»?",
+        options: ["Erobique und Jacques Palminger", "Rammstein", "Dua Lipa"],
+        answer: "Erobique und Jacques Palminger"
+    },
+    {
+        topic: "Wochenlied",
+        question: "Ergänze den Refrain: Ich schulde dem Leben das ___ in meinen Augen.",
+        options: ["Leuchten", "Wohnen", "Sprechen"],
+        answer: "Leuchten"
+    },
+
+    {
+        topic: "Personal Data",
+        question: "Wo wohnen Sie? — Ich wohne ___ Frankfurt.",
+        options: ["in", "aus", "nach"],
+        answer: "in"
+    },
+    {
+        topic: "Personal Data",
+        question: "Woher kommen Sie? — Ich komme ___ Brasilien.",
+        options: ["aus", "in", "bei"],
+        answer: "aus"
+    },
+    {
+        topic: "Personal Data",
+        question: "Was bedeutet die Abkürzung «PLZ»?",
+        options: ["Postleitzahl", "Personallandzahl", "Platz"],
+        answer: "Postleitzahl"
+    },
+    {
+        topic: "Personal Data",
+        question: "Welches Feld enthält «Lindenstraße 12»?",
+        options: ["Straße", "Ort", "Land"],
+        answer: "Straße"
+    },
+
+    {
+        topic: "Personalpronomen",
+        question: "Maria ist neu. ___ kommt aus Bogotá.",
+        options: ["Sie", "Er", "Es"],
+        answer: "Sie"
+    },
+    {
+        topic: "Personalpronomen",
+        question: "Das sind Mia und Leo. ___ kommen aus Berlin.",
+        options: ["Sie", "Ihr", "Du"],
+        answer: "Sie"
+    },
+    {
+        topic: "Personalpronomen",
+        question: "Frau Klein, kommen ___ aus Berlin?",
+        options: ["Sie", "sie", "ihr"],
+        answer: "Sie"
+    },
+    {
+        topic: "Personalpronomen",
+        question: "Du sprichst mit Magdalena und Beno. Welches Pronomen benutzt du?",
+        options: ["ihr", "sie", "wir"],
+        answer: "ihr"
+    },
+
+    {
+        topic: "Nomen und Artikel",
+        question: "Welche Schreibweise ist richtig?",
+        options: ["Ich sehe einen Hund.", "Ich sehe einen hund.", "ich sehe einen Hund."],
+        answer: "Ich sehe einen Hund."
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Welcher Artikel passt? ___ Computer",
+        options: ["der", "die", "das"],
+        answer: "der"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Welcher Artikel passt? ___ Lampe",
+        options: ["die", "der", "das"],
+        answer: "die"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Welcher Artikel passt? ___ Fenster",
+        options: ["das", "die", "der"],
+        answer: "das"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Welche Endung ist meistens neutral?",
+        options: ["-chen", "-ung", "-ling"],
+        answer: "-chen"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Welche Endung ist meistens feminin?",
+        options: ["-ung", "-ment", "-ling"],
+        answer: "-ung"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Welche Endung ist meistens maskulin?",
+        options: ["-ling", "-heit", "-chen"],
+        answer: "-ling"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Welcher Artikel passt meistens zu Nomen auf -ment?",
+        options: ["das", "die", "der"],
+        answer: "das"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Bei zusammengesetzten Nomen bestimmt ___ den Artikel.",
+        options: ["das letzte Nomen", "das erste Nomen", "die Wortlänge"],
+        answer: "das letzte Nomen"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Welcher Artikel passt? Haus + Tür = ___ Haustür",
+        options: ["die", "das", "der"],
+        answer: "die"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Wie lautet der Plural von «der Apfel»?",
+        options: ["die Äpfel", "die Apfels", "die Apfeln"],
+        answer: "die Äpfel"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Wie lautet der Plural von «der Mann»?",
+        options: ["die Männer", "die Mannen", "die Manns"],
+        answer: "die Männer"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Wie lautet der Plural von «das Buch»?",
+        options: ["die Bücher", "die Bucher", "die Büche"],
+        answer: "die Bücher"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Bestimmter Artikel: die Frau. Unbestimmter Artikel: ___ Frau.",
+        options: ["eine", "ein", "einen"],
+        answer: "eine"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Verneinung: Das ist ___ Mann.",
+        options: ["kein", "keine", "keinen"],
+        answer: "kein"
+    },
+    {
+        topic: "Nomen und Artikel",
+        question: "Plural: Das sind ___ Bücher.",
+        options: ["keine", "kein", "einen"],
+        answer: "keine"
+    },
+
+    {
+        topic: "Verben",
+        question: "Du ___ das Bild. · sehen",
+        options: ["siehst", "seht", "sehe"],
+        answer: "siehst"
+    },
+    {
+        topic: "Verben",
+        question: "Carlotta ___ eine Banane. · essen",
+        options: ["isst", "esst", "esse"],
+        answer: "isst"
+    },
+    {
+        topic: "Verben",
+        question: "Ihr ___ nach Hause. · gehen",
+        options: ["geht", "gehen", "gehst"],
+        answer: "geht"
+    },
+    {
+        topic: "Verben",
+        question: "Simone ___ jeden Tag acht Stunden. · arbeiten",
+        options: ["arbeitet", "arbeite", "arbeiten"],
+        answer: "arbeitet"
+    },
+    {
+        topic: "Verben",
+        question: "Wir ___ die Hausaufgaben. · machen",
+        options: ["machen", "macht", "machst"],
+        answer: "machen"
+    },
+    {
+        topic: "Verben",
+        question: "Du ___ neue Wörter. · lernen",
+        options: ["lernst", "lernt", "lerne"],
+        answer: "lernst"
+    },
+    {
+        topic: "Verben",
+        question: "Er ___ seinem Freund. · helfen",
+        options: ["hilft", "helft", "helfe"],
+        answer: "hilft"
+    },
+    {
+        topic: "Verben",
+        question: "Du ___ das Menü. · lesen",
+        options: ["liest", "lest", "lese"],
+        answer: "liest"
+    },
+    {
+        topic: "Verben",
+        question: "Ihr ___ einen Satz. · schreiben",
+        options: ["schreibt", "schreiben", "schreibst"],
+        answer: "schreibt"
+    },
+    {
+        topic: "Verben",
+        question: "Er ___ mit dem Fahrrad. · fahren",
+        options: ["fährt", "fahrt", "fahre"],
+        answer: "fährt"
+    },
+    {
+        topic: "Verben",
+        question: "Magdalena ___ nach der Adresse. · fragen",
+        options: ["fragt", "fragen", "fragst"],
+        answer: "fragt"
+    },
+    {
+        topic: "Verben",
+        question: "Ihr ___ die Zahlen. · hören",
+        options: ["hört", "hören", "hörst"],
+        answer: "hört"
+    },
+    {
+        topic: "Verben",
+        question: "Carlotta ___ Orangensaft. · trinken",
+        options: ["trinkt", "trinkst", "trinke"],
+        answer: "trinkt"
+    },
+    {
+        topic: "Verben",
+        question: "Du ___ den Dialog. · verstehen",
+        options: ["verstehst", "versteht", "verstehe"],
+        answer: "verstehst"
+    },
+
+    {
+        topic: "Trennbare Verben",
+        question: "Ergänze: Ich stehe jeden Morgen um sechs Uhr ___.",
+        options: ["auf", "an", "ein"],
+        answer: "auf"
+    },
+    {
+        topic: "Trennbare Verben",
+        question: "Der Unterricht ___ jeden Tag um neun Uhr an.",
+        options: ["fängt", "fangt", "fangen"],
+        answer: "fängt"
+    },
+    {
+        topic: "Trennbare Verben",
+        question: "Nach der Arbeit kaufe ich immer ___.",
+        options: ["ein", "auf", "an"],
+        answer: "ein"
+    },
+    {
+        topic: "Trennbare Verben",
+        question: "Welche Frage ist richtig?",
+        options: ["Wann macht der Supermarkt auf?", "Wann aufmacht der Supermarkt?", "Wann der Supermarkt macht auf?"],
+        answer: "Wann macht der Supermarkt auf?"
+    },
+    {
+        topic: "Trennbare Verben",
+        question: "Wo steht die trennbare Vorsilbe im Hauptsatz?",
+        options: ["am Satzende", "direkt vor dem Subjekt", "immer am Satzanfang"],
+        answer: "am Satzende"
+    },
+    {
+        topic: "Trennbare Verben",
+        question: "Welche Form ist richtig? · anfangen mit du",
+        options: ["du fängst an", "du fangst an", "du anfängst"],
+        answer: "du fängst an"
+    },
+
+    {
+        topic: "Länder",
+        question: "Ordne richtig zu:",
+        options: ["Brasilien — Portugiesisch", "Brasilien — Spanisch", "Brasilien — Französisch"],
+        answer: "Brasilien — Portugiesisch"
+    },
+    {
+        topic: "Länder",
+        question: "Ordne richtig zu:",
+        options: ["Japan — Japanisch", "Japan — Chinesisch", "Japan — Arabisch"],
+        answer: "Japan — Japanisch"
+    },
+    {
+        topic: "Länder",
+        question: "Welche Sprache spricht man in Ägypten?",
+        options: ["Arabisch", "Russisch", "Türkisch"],
+        answer: "Arabisch"
+    },
+    {
+        topic: "Länder",
+        question: "Welche Nationalität passt zu Kolumbien?",
+        options: ["Kolumbianer / Kolumbianerin", "Kolumbisch / Kolumbische", "Kolumbier / Kolumbierin"],
+        answer: "Kolumbianer / Kolumbianerin"
+    },
+    {
+        topic: "Länder",
+        question: "Ordne richtig zu:",
+        options: ["Ukraine — Ukrainisch", "Ukraine — Russländisch", "Ukraine — Türkisch"],
+        answer: "Ukraine — Ukrainisch"
+    },
+
+    {
+        topic: "Zahlen",
+        question: "Wie schreibt man 16 auf Deutsch?",
+        options: ["sechzehn", "sechszehn", "sechzig"],
+        answer: "sechzehn"
+    },
+    {
+        topic: "Zahlen",
+        question: "Wie schreibt man 20 auf Deutsch?",
+        options: ["zwanzig", "zweizig", "zwanzich"],
+        answer: "zwanzig"
+    },
+    {
+        topic: "Zahlen",
+        question: "Wie schreibt man 24 auf Deutsch?",
+        options: ["vierundzwanzig", "zwanzigundvier", "vierzwanzig"],
+        answer: "vierundzwanzig"
+    },
+    {
+        topic: "Zahlen",
+        question: "Welche Zahl ist «siebenunddreißig»?",
+        options: ["37", "73", "27"],
+        answer: "37"
+    },
+    {
+        topic: "Zahlen",
+        question: "Welche Zahl ist «neunundvierzig»?",
+        options: ["49", "94", "39"],
+        answer: "49"
+    },
+    {
+        topic: "Zahlen",
+        question: "Wie schreibt man 70 auf Deutsch?",
+        options: ["siebzig", "siebenzig", "siebzehn"],
+        answer: "siebzig"
+    },
+    {
+        topic: "Zahlen",
+        question: "Was bedeutet «hundert»?",
+        options: ["100", "1.000", "10"],
+        answer: "100"
+    },
+    {
+        topic: "Zahlen",
+        question: "Was bedeutet «tausend»?",
+        options: ["1.000", "100", "10.000"],
+        answer: "1.000"
+    },
+    {
+        topic: "Zahlen",
+        question: "Wie baut man Zahlen ab 21 meistens?",
+        options: ["Einer + und + Zehner", "Zehner + und + Einer", "Einer + Zehner + und"],
+        answer: "Einer + und + Zehner"
+    },
+
+    {
+        topic: "Die Uhr",
+        question: "Wie sagt man 07:30 umgangssprachlich?",
+        options: ["halb acht", "halb sieben", "Viertel vor acht"],
+        answer: "halb acht"
+    },
+    {
+        topic: "Die Uhr",
+        question: "Wie sagt man 07:55?",
+        options: ["fünf vor acht", "fünf nach acht", "fünf vor sieben"],
+        answer: "fünf vor acht"
+    },
+    {
+        topic: "Die Uhr",
+        question: "Wie sagt man 07:45?",
+        options: ["Viertel vor acht", "Viertel nach acht", "halb acht"],
+        answer: "Viertel vor acht"
+    },
+    {
+        topic: "Die Uhr",
+        question: "Wie sagt man 07:15?",
+        options: ["Viertel nach sieben", "Viertel vor sieben", "halb acht"],
+        answer: "Viertel nach sieben"
+    },
+    {
+        topic: "Die Uhr",
+        question: "Wie sagt man 10:10?",
+        options: ["zehn nach zehn", "zehn vor zehn", "zehn Uhr"],
+        answer: "zehn nach zehn"
+    },
+    {
+        topic: "Die Uhr",
+        question: "Wie sagt man 20:30 umgangssprachlich?",
+        options: ["halb neun", "halb acht", "Viertel nach acht"],
+        answer: "halb neun"
+    },
+    {
+        topic: "Die Uhr",
+        question: "Wie sagt man 20:50?",
+        options: ["zehn vor neun", "zehn nach acht", "zehn vor acht"],
+        answer: "zehn vor neun"
+    },
+    {
+        topic: "Die Uhr",
+        question: "Welche Frage bedeutet «¿Qué hora es?»?",
+        options: ["Wie spät ist es?", "Woher kommt die Uhr?", "Wann wohnen Sie?"],
+        answer: "Wie spät ist es?"
+    },
+
+    {
+        topic: "Tageszeiten",
+        question: "Welche Tageszeit dauert ungefähr von 5 bis 9 Uhr?",
+        options: ["der Morgen", "der Abend", "die Nacht"],
+        answer: "der Morgen"
+    },
+    {
+        topic: "Tageszeiten",
+        question: "Welche Tageszeit dauert ungefähr von 9 bis 12 Uhr?",
+        options: ["der Vormittag", "der Nachmittag", "der Mittag"],
+        answer: "der Vormittag"
+    },
+    {
+        topic: "Tageszeiten",
+        question: "Welche Tageszeit dauert ungefähr von 12 bis 14 Uhr?",
+        options: ["der Mittag", "der Morgen", "der Abend"],
+        answer: "der Mittag"
+    },
+    {
+        topic: "Tageszeiten",
+        question: "Welche Tageszeit dauert ungefähr von 14 bis 18 Uhr?",
+        options: ["der Nachmittag", "der Vormittag", "die Nacht"],
+        answer: "der Nachmittag"
+    },
+    {
+        topic: "Tageszeiten",
+        question: "Welche Tageszeit dauert ungefähr von 18 bis 22 Uhr?",
+        options: ["der Abend", "der Mittag", "der Morgen"],
+        answer: "der Abend"
+    },
+    {
+        topic: "Tageszeiten",
+        question: "Welche Form ist richtig?",
+        options: ["in der Nacht / nachts", "am Nacht / nachmittags", "in dem Morgen / morgens"],
+        answer: "in der Nacht / nachts"
+    },
+
+    {
+        topic: "Pizzeria",
+        question: "Du möchtest Orangensaft statt Kaffee. Welche Antwort passt?",
+        options: ["Nein, danke. Ich trinke lieber Orangensaft.", "Ja, ohne Orangensaft.", "Nein, das ist keine Paprika."],
+        answer: "Nein, danke. Ich trinke lieber Orangensaft."
+    },
+    {
+        topic: "Pizzeria",
+        question: "Du möchtest Kaffee mit Milch. Was bestellst du?",
+        options: ["Einen Kaffee mit Milch, bitte.", "Eine Milch ohne Kaffee, bitte.", "Ein Kaffee mit Tomate, bitte."],
+        answer: "Einen Kaffee mit Milch, bitte."
+    },
+    {
+        topic: "Pizzeria",
+        question: "Du möchtest keine Zwiebeln. Welche Antwort passt?",
+        options: ["Nein, bitte ohne Zwiebeln.", "Ja, bitte viel Zwiebeln.", "Nein, lieber mit Zwiebeln."],
+        answer: "Nein, bitte ohne Zwiebeln."
+    },
+    {
+        topic: "Pizzeria",
+        question: "Auf der Pizza soll viel Käse sein. Welche Antwort passt?",
+        options: ["Ja, bitte viel Käse.", "Nein, bitte wenig Wasser.", "Ja, ohne Käse, bitte."],
+        answer: "Ja, bitte viel Käse."
+    },
+    {
+        topic: "Pizzeria",
+        question: "Du möchtest nur ein kleines Glas Wasser. Welche Antwort passt?",
+        options: ["Nein, bitte nur wenig Wasser.", "Ja, bitte viel Wasser.", "Nein, lieber viel Kaffee."],
+        answer: "Nein, bitte nur wenig Wasser."
+    },
+    {
+        topic: "Pizzeria",
+        question: "Ist das eine Tomate? Auf dem Bild ist eine Paprika.",
+        options: ["Nein, das ist keine Tomate. Das ist eine Paprika.", "Ja, das ist eine Tomate.", "Nein, das ist kein Paprika."],
+        answer: "Nein, das ist keine Tomate. Das ist eine Paprika."
+    },
+    {
+        topic: "Pizzeria",
+        question: "Welche Frage ist formell?",
+        options: ["Was möchten Sie trinken?", "Was möchtest du trinken?", "Was trinkst ihr?"],
+        answer: "Was möchten Sie trinken?"
+    },
+
+    {
+        topic: "Sehen und Hören",
+        question: "Welches Wort passt zu 🍎?",
+        options: ["der Apfel", "die Lampe", "das Fenster"],
+        answer: "der Apfel"
+    },
+    {
+        topic: "Sehen und Hören",
+        question: "Welches Wort passt zu 🐈?",
+        options: ["die Katze", "der Hund", "das Pferd"],
+        answer: "die Katze"
+    },
+    {
+        topic: "Sehen und Hören",
+        question: "Welches Wort passt zu 💡?",
+        options: ["die Lampe", "der Tisch", "das Messer"],
+        answer: "die Lampe"
+    },
+    {
+        topic: "Sehen und Hören",
+        question: "Welches Wort passt zu 🐟?",
+        options: ["der Fisch", "der Vogel", "die Maus"],
+        answer: "der Fisch"
+    },
+    {
+        topic: "Sehen und Hören",
+        question: "Welches Wort passt zu 🏠?",
+        options: ["das Haus", "die Straße", "der Garten"],
+        answer: "das Haus"
+    },
+
+    {
+        topic: "Wortschatz + ABC",
+        question: "Wie heißt der Buchstabe ß?",
+        options: ["Eszett", "Doppel-S", "Scharfes Z"],
+        answer: "Eszett"
+    },
+    {
+        topic: "Wortschatz + ABC",
+        question: "Welche Buchstabierung passt zu HAUS?",
+        options: ["H–A–U–S", "H–E–U–S", "A–H–U–S"],
+        answer: "H–A–U–S"
+    },
+    {
+        topic: "Wortschatz + ABC",
+        question: "Welcher Buchstabe kommt nach M?",
+        options: ["N", "L", "O"],
+        answer: "N"
+    },
+    {
+        topic: "Wortschatz + ABC",
+        question: "Welche drei Buchstaben sind Umlaute?",
+        options: ["Ä, Ö, Ü", "A, O, U", "B, D, G"],
+        answer: "Ä, Ö, Ü"
+    },
+    {
+        topic: "Wortschatz + ABC",
+        question: "Wie heißt W im deutschen Alphabet?",
+        options: ["We", "Doppel-U", "Vau"],
+        answer: "We"
+    },
+    {
+        topic: "Wortschatz + ABC",
+        question: "Wie heißt V im deutschen Alphabet?",
+        options: ["Vau", "We", "Fau"],
+        answer: "Vau"
+    },
+
+    {
+        topic: "Aussprache",
+        question: "Wie klingt «au» in «Haus»?",
+        options: ["ähnlich wie «au»", "wie eine lange i", "ähnlich wie «oi»"],
+        answer: "ähnlich wie «au»"
+    },
+    {
+        topic: "Aussprache",
+        question: "Was macht das h häufig in «sehen» oder «fahren»?",
+        options: ["Es verlängert den Vokal.", "Es verdoppelt den Konsonanten.", "Es wird wie sch gesprochen."],
+        answer: "Es verlängert den Vokal."
+    },
+    {
+        topic: "Aussprache",
+        question: "Was zeigen aa, ee und oo meistens an?",
+        options: ["einen langen Vokal", "einen kurzen Vokal", "einen Umlaut"],
+        answer: "einen langen Vokal"
+    },
+    {
+        topic: "Aussprache",
+        question: "Was zeigt ein Doppelkonsonant wie in «Mutter» meistens an?",
+        options: ["Der Vokal davor ist kurz.", "Der Vokal davor ist lang.", "Der Konsonant wird zweimal gesprochen."],
+        answer: "Der Vokal davor ist kurz."
+    },
+    {
+        topic: "Aussprache",
+        question: "Wie klingt «sch» in «Schule» ungefähr?",
+        options: ["wie «sh»", "wie «ts»", "wie «k»"],
+        answer: "wie «sh»"
+    },
+    {
+        topic: "Aussprache",
+        question: "Wo klingt ch meistens weich, wie in «ich»?",
+        options: ["nach i oder e", "nach a, o oder u", "nur am Wortanfang"],
+        answer: "nach i oder e"
+    },
+    {
+        topic: "Aussprache",
+        question: "Wie klingen sp und st am Wortanfang meistens?",
+        options: ["wie shp und sht", "wie sp und st im Spanischen", "wie sf und sd"],
+        answer: "wie shp und sht"
+    },
+    {
+        topic: "Aussprache",
+        question: "Wie klingt die Endung -er in «Vater» häufig?",
+        options: ["ungefähr wie ein schwaches a", "wie eine lange i", "wie oi"],
+        answer: "ungefähr wie ein schwaches a"
+    },
+    {
+        topic: "Aussprache",
+        question: "Wie klingt die Endung -ig im Standarddeutschen häufig?",
+        options: ["/ɪç/", "/aɪ̯/", "/pf/"],
+        answer: "/ɪç/"
+    },
+    {
+        topic: "Aussprache",
+        question: "Wie beginnt die Endung -tion in «Information»?",
+        options: ["ungefähr mit «ts»", "mit «sh»", "mit «pf»"],
+        answer: "ungefähr mit «ts»"
+    },
+    {
+        topic: "Aussprache",
+        question: "Wie spricht man pf in «Pferd»?",
+        options: ["als zwei verbundene Laute p + f", "nur wie f", "wie b"],
+        answer: "als zwei verbundene Laute p + f"
+    }
+);
+
+function seedFromText(text) {
+    let value = 2166136261;
+    for (const character of text) {
+        value ^= character.charCodeAt(0);
+        value = Math.imul(value, 16777619);
+    }
+    return value >>> 0;
+}
+
+function seededRandom(seed) {
+    let state = seed >>> 0;
+    return () => {
+        state += 0x6D2B79F5;
+        let value = state;
+        value = Math.imul(value ^ value >>> 15, value | 1);
+        value ^= value + Math.imul(value ^ value >>> 7, value | 61);
+        return ((value ^ value >>> 14) >>> 0) / 4294967296;
+    };
+}
+
+function shuffledWith(items, random) {
+    const copy = [...items];
+    for (let index = copy.length - 1; index > 0; index--) {
+        const other = Math.floor(random() * (index + 1));
+        [copy[index], copy[other]] = [copy[other], copy[index]];
+    }
+    return copy;
+}
+
+const now = new Date();
+const dateKey = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0")
+].join("-");
+const random = seededRandom(seedFromText(dateKey));
+
+const DAILY_QUESTION_COUNT = 20;
+const requiredTopicGroups = [
+    ["Wochenlied"],
+    ["Die Zeit", "Wochentage"],
+    ["Begrüßung", "Wie geht’s?"],
+    ["W‑Fragen", "Sprache im Kurs", "Personal Data"],
+    ["Länder"],
+    ["sein", "wohnen", "kommen", "sprechen", "Verben"],
+    ["Trennbare Verben"],
+    ["Sehen und Hören"],
+    ["Zahlen"],
+    ["Die Uhr"],
+    ["Tageszeiten"],
+    ["Pizzeria"],
+    ["Wortschatz + ABC", "Alphabet", "Buchstabieren", "Lesen"],
+    ["Nomen und Artikel"],
+    ["Personalpronomen"],
+    ["Aussprache"]
+];
+
+const requiredQuestions = requiredTopicGroups.map(topics => {
+    const candidates = questionBank.filter(question => topics.includes(question.topic));
+    return candidates[Math.floor(random() * candidates.length)];
+});
+const additionalQuestions = shuffledWith(
+    questionBank.filter(question => !requiredQuestions.includes(question)),
+    random
+).slice(0, DAILY_QUESTION_COUNT - requiredQuestions.length);
+
+const dailyQuestions = shuffledWith([...requiredQuestions, ...additionalQuestions], random)
+    .map(question => ({
+    ...question,
+    options: shuffledWith(question.options, random)
+}));
+
+document.getElementById("testDate").textContent =
+    now.toLocaleDateString("de-DE", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
+
+document.getElementById("quizGrid").innerHTML = dailyQuestions.map((question, index) => `
+    <fieldset class="question-card" data-question-index="${index}">
+        <span class="question-number">${index + 1}</span>
+        <legend>
+            <span class="topic">${question.topic}</span>
+            ${question.question}
+        </legend>
+        <div class="options">
+            ${question.options.map(option => `
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="question-${index}"
+                        value="${option.replaceAll("&", "&amp;").replaceAll("\"", "&quot;")}" 
+                        data-correct="${option === question.answer}"
+                    >
+                    <span>${option}</span>
+                </label>
+            `).join("")}
+        </div>
+    </fieldset>
+`).join("");
+
+let submittedResult = null;
+
+function updateProgress() {
+    const answered = dailyQuestions.filter((question, index) =>
+        document.querySelector(`input[name="question-${index}"]:checked`)
+    ).length;
+    const percentage = answered / dailyQuestions.length * 100;
+    document.getElementById("progressBar").style.width = `${percentage}%`;
+    document.getElementById("progressLabel").textContent =
+        `${answered} / ${dailyQuestions.length} beantwortet`;
+}
+
+document.querySelectorAll('#dailyTest input[type="radio"]').forEach(input => {
+    input.addEventListener("change", updateProgress);
+});
+updateProgress();
+
+document.getElementById("dailyTest").addEventListener("submit", event => {
+    event.preventDefault();
+    const nameInput = document.getElementById("studentName");
+    const studentName = nameInput.value.trim();
+    const message = document.getElementById("formMessage");
+
+    if (!studentName) {
+        message.textContent = "Escribe tu nombre antes de entregar el test.";
+        nameInput.focus();
+        return;
+    }
+
+    const answers = dailyQuestions.map((question, index) => {
+        const selected = document.querySelector(`input[name="question-${index}"]:checked`);
+        return {
+            number: index + 1,
+            topic: question.topic,
+            question: question.question,
+            selected: selected ? selected.value : "— Sin respuesta —",
+            correct: Boolean(selected && selected.dataset.correct === "true")
+        };
+    });
+
+    const score = answers.filter(answer => answer.correct).length;
+    const percentage = Math.round(score / dailyQuestions.length * 100);
+
+    submittedResult = {
+        studentName,
+        dateKey,
+        submittedAt: new Date().toISOString(),
+        score,
+        maximum: dailyQuestions.length,
+        percentage,
+        answers: answers.map(({ correct, ...answer }) => answer)
+    };
+
+    const history = JSON.parse(localStorage.getItem("deutschDailyTestHistory") || "[]");
+    history.unshift(submittedResult);
+    localStorage.setItem("deutschDailyTestHistory", JSON.stringify(history.slice(0, 30)));
+
+    document.querySelectorAll('#dailyTest input[type="radio"]').forEach(input => {
+        input.disabled = true;
+    });
+    document.getElementById("submitTest").disabled = true;
+    message.textContent = "";
+
+    document.getElementById("scoreText").textContent = `${score} / ${dailyQuestions.length}`;
+    document.getElementById("resultTitle").textContent =
+        percentage >= 80 ? "Sehr gut!" : percentage >= 60 ? "Gut gemacht!" : "Weiter üben!";
+    document.getElementById("resultSummary").textContent =
+        `${studentName}, obtuviste ${percentage} %. Tu resultado quedó guardado en este navegador.`;
+    document.getElementById("resultPanel").hidden = false;
+    document.getElementById("resultPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+document.getElementById("downloadReport").addEventListener("click", () => {
+    if (!submittedResult) return;
+
+    const lines = [
+        "DEUTSCHUNTERRICHT · TAGESTEST",
+        "Alle Themen · Was kannst du schon?",
+        "",
+        `Schülerin: ${submittedResult.studentName}`,
+        `Datum: ${submittedResult.dateKey}`,
+        `Punktzahl: ${submittedResult.score} / ${submittedResult.maximum} (${submittedResult.percentage} %)`,
+        "",
+        "ANTWORTEN DER SCHÜLERIN",
+        "────────────────────────",
+        ...submittedResult.answers.flatMap(answer => [
+            "",
+            `${answer.number}. [${answer.topic}] ${answer.question}`,
+            `Antwort: ${answer.selected}`
+        ]),
+        "",
+        "Hinweis: Este informe no contiene la clave de corrección."
+    ];
+
+    const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    const safeName = submittedResult.studentName
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/gi, "-")
+        .replace(/^-|-$/g, "")
+        .toLowerCase() || "schuelerin";
+    link.href = url;
+    link.download = `deutsch-test-${submittedResult.dateKey}-${safeName}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
