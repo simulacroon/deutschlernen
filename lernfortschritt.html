@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wochenplan · Deutschunterricht</title>
+<style>
+:root {
+    --ink:#171717;
+    --paper:#fffdf5;
+    --yellow:#ffdf5d;
+    --blue:#9ee6ff;
+    --pink:#ffb8d7;
+    --green:#b9ffc4;
+    --violet:#c6b5ff;
+    --orange:#ffbd78;
+}
+* { box-sizing:border-box; }
+body {
+    margin:0;
+    color:var(--ink);
+    background:
+        radial-gradient(circle at 10% 10%, rgba(255,223,93,.45), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(158,230,255,.5), transparent 30%),
+        var(--paper);
+    font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+button,input,textarea { font:inherit; }
+button,.back-link {
+    border:3px solid var(--ink);
+    border-radius:999px;
+    background:#fff;
+    color:var(--ink);
+    padding:10px 16px;
+    font-weight:950;
+    box-shadow:3px 3px 0 var(--ink);
+    cursor:pointer;
+    text-decoration:none;
+}
+button:hover,.back-link:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+.page { width:min(1220px, calc(100% - 28px)); margin:0 auto; padding:24px 0 70px; }
+.topbar { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:22px; }
+.eyebrow { text-transform:uppercase; letter-spacing:.12em; font-weight:1000; font-size:13px; }
+.hero {
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:24px;
+    align-items:center;
+    padding:clamp(24px,5vw,58px);
+    border:3px solid var(--ink);
+    border-radius:34px;
+    background:var(--violet);
+    box-shadow:8px 8px 0 var(--ink);
+}
+h1 { margin:.2em 0; font-size:clamp(42px,7vw,88px); line-height:.92; }
+.hero p { max-width:720px; font-size:clamp(17px,2vw,22px); font-weight:750; }
+.hero-mark { font-size:clamp(100px,18vw,210px); text-align:center; filter:drop-shadow(6px 6px 0 var(--ink)); }
+.student-row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin:28px 0;
+}
+.field,.panel {
+    border:3px solid var(--ink);
+    border-radius:22px;
+    background:#fff;
+    padding:18px;
+    box-shadow:5px 5px 0 var(--ink);
+}
+.field label { display:block; font-weight:950; margin-bottom:8px; }
+.field input,.notes textarea {
+    width:100%;
+    min-height:48px;
+    padding:10px 12px;
+    border:2px solid var(--ink);
+    border-radius:12px;
+    background:var(--paper);
+    color:var(--ink);
+}
+.progress-panel { margin:28px 0; background:var(--yellow); }
+.progress-head { display:flex; justify-content:space-between; gap:18px; align-items:end; }
+.progress-number { font-size:clamp(38px,6vw,68px); font-weight:1000; line-height:1; }
+.progress-track { height:28px; margin-top:16px; overflow:hidden; border:3px solid var(--ink); border-radius:999px; background:#fff; }
+.progress-fill { width:0; height:100%; background:var(--green); transition:width .25s ease; }
+.day-summary { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:9px; margin-top:18px; }
+.day-chip { padding:10px 6px; border:2px solid var(--ink); border-radius:14px; background:#fff; text-align:center; font-weight:900; }
+.day-chip.complete { background:var(--green); }
+.table-panel { padding:0; overflow:hidden; }
+.table-title { padding:22px; background:var(--blue); border-bottom:3px solid var(--ink); }
+.table-wrap { overflow-x:auto; }
+table { width:100%; min-width:850px; border-collapse:collapse; }
+th,td { padding:14px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink); vertical-align:top; text-align:left; }
+th:last-child,td:last-child { border-right:0; }
+thead th { background:var(--ink); color:#fff; }
+tbody tr:last-child td { border-bottom:0; }
+tbody tr.done { background:#e2ffe7; }
+.day-badge { display:inline-block; min-width:96px; padding:7px 10px; border:2px solid var(--ink); border-radius:999px; text-align:center; font-weight:1000; }
+.day-0 { background:var(--yellow); }.day-1 { background:var(--pink); }.day-2 { background:var(--blue); }
+.day-3 { background:var(--green); }.day-4 { background:var(--orange); }.day-5 { background:var(--violet); }.day-6 { background:#fff; }
+.topic { font-weight:1000; }
+.goal { font-weight:650; line-height:1.45; }
+.check-cell { width:110px; text-align:center; }
+.check-wrap { display:inline-grid; place-items:center; width:48px; height:48px; cursor:pointer; }
+.check-wrap input { width:28px; height:28px; accent-color:#159447; cursor:pointer; }
+.notes { margin-top:28px; background:var(--pink); }
+.notes textarea { min-height:150px; resize:vertical; }
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+.actions button:first-child { background:var(--green); }
+.actions button:last-child { background:#ff9c9c; }
+.save-status { min-height:24px; margin:12px 0 0; font-weight:900; }
+.legend { margin:18px 0 0; padding:14px; border:2px dashed var(--ink); border-radius:16px; background:rgba(255,255,255,.72); font-weight:700; }
+@media (max-width:850px) {
+    .hero { grid-template-columns:1fr; }
+    .hero-mark { display:none; }
+    .student-row { grid-template-columns:1fr; }
+    .day-summary { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media print {
+    body { background:#fff; }
+    .page { width:100%; padding:0; }
+    .topbar,.actions { display:none; }
+    .hero,.panel { box-shadow:none; }
+    .hero { padding:24px; }
+    h1 { font-size:52px; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+    <div class="topbar">
+        <a class="back-link" href="index.html">← ZURÜCK ZUM UNTERRICHT</a>
+        <span class="eyebrow">Deutsch · Lernfortschritt</span>
+    </div>
+
+    <header class="hero">
+        <div>
+            <div class="eyebrow">Wochenplan · tabla de seguimiento</div>
+            <h1>Was habe ich gelernt?</h1>
+            <p>
+                Marca un tema cuando puedas comprenderlo, decir un ejemplo o resolver
+                una actividad sin ayuda. Tu progreso se guarda automáticamente en este navegador.
+            </p>
+        </div>
+        <div class="hero-mark" aria-hidden="true">✓</div>
+    </header>
+
+    <section class="student-row" aria-label="Datos de la semana">
+        <div class="field">
+            <label for="studentName">Name · nombre</label>
+            <input id="studentName" autocomplete="name" placeholder="Mein Name ist …">
+        </div>
+        <div class="field">
+            <label for="weekStart">Woche ab · semana desde</label>
+            <input id="weekStart" type="date">
+        </div>
+    </section>
+
+    <section class="panel progress-panel" aria-labelledby="progressTitle">
+        <div class="progress-head">
+            <div>
+                <div class="eyebrow">Dein Fortschritt</div>
+                <h2 id="progressTitle">Wochenfortschritt</h2>
+            </div>
+            <div class="progress-number" id="progressNumber">0%</div>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Wochenfortschritt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p id="progressText"><b>0</b> von <b>0</b> Themen gelernt.</p>
+        <div class="day-summary" id="daySummary"></div>
+        <div class="legend">✓ “Aprendido” significa: lo reconozco, puedo usar un ejemplo y sé en qué situación se utiliza.</div>
+    </section>
+
+    <section class="panel table-panel" aria-labelledby="tableTitle">
+        <div class="table-title">
+            <div class="eyebrow">Montag bis Sonntag</div>
+            <h2 id="tableTitle">Themen der Woche · temas de la semana</h2>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Tag</th><th>Thema</th><th>Lernziel · objetivo</th><th>Gelernt</th></tr></thead>
+                <tbody id="topicRows"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel notes">
+        <div class="eyebrow">Notizen für die nächste Stunde</div>
+        <h2>Was möchte ich wiederholen?</h2>
+        <textarea id="weeklyNotes" placeholder="Ich möchte … wiederholen. / Tengo dudas sobre …"></textarea>
+        <p class="save-status" id="saveStatus" aria-live="polite"></p>
+        <div class="actions">
+            <button type="button" id="printProgress">FORTSCHRITT DRUCKEN</button>
+            <button type="button" id="resetProgress">NEUE WOCHE · ZURÜCKSETZEN</button>
+        </div>
+    </section>
+</main>
+
+<script>
+const weeklyTopics = [
+    {day:"Montag", topic:"Begrüßung", goal:"Guten Morgen, Guten Tag, Guten Abend und Guten Nacht passend verwenden."},
+    {day:"Montag", topic:"Wie geht es dir / Ihnen?", goal:"Formal und informell fragen und natürlich antworten."},
+    {day:"Montag", topic:"W‑Fragen", goal:"wer, wie, wo, woher, was und wann in Fragen erkennen."},
+    {day:"Montag", topic:"Persönliche Daten", goal:"Name, Adresse, Wohnort, Herkunft und Sprache angeben."},
+    {day:"Montag", topic:"Redemittel im Kurs", goal:"Um Wiederholung, Hilfe und Buchstabieren bitten."},
+
+    {day:"Dienstag", topic:"Personalpronomen", goal:"ich, du, er/sie/es, wir, ihr und sie/Sie unterscheiden."},
+    {day:"Dienstag", topic:"sein und haben", goal:"bin, bist, ist, sind, seid sowie habe, hast, hat richtig einsetzen."},
+    {day:"Dienstag", topic:"Verben und Endungen", goal:"Regelmäßige Verben im Präsens konjugieren."},
+    {day:"Dienstag", topic:"wohnen, kommen, sprechen", goal:"Kurze Aussagen und Fragen über persönliche Daten bilden."},
+    {day:"Dienstag", topic:"Satzbau", goal:"Verb auf Position 2, Ja/Nein‑Fragen und W‑Fragen ordnen."},
+
+    {day:"Mittwoch", topic:"Nomen und Artikel", goal:"der, die und das mit häufigen Nomen lernen."},
+    {day:"Mittwoch", topic:"Plural", goal:"Häufige Pluralformen erkennen und zuordnen."},
+    {day:"Mittwoch", topic:"ein / eine / kein / keine", goal:"Unbestimmten Artikel und Verneinung richtig wählen."},
+    {day:"Mittwoch", topic:"Akkusativ", goal:"Den maskulinen Wechsel ein → einen und kein → keinen erkennen."},
+    {day:"Mittwoch", topic:"Wohnung", goal:"Zimmer, Möbel und die eigene Wohnung beschreiben."},
+
+    {day:"Donnerstag", topic:"Zahlen", goal:"Zahlen bis 100 hören, lesen und bilden."},
+    {day:"Donnerstag", topic:"Hundert und Tausend", goal:"Große Zahlen sowie Jahreszahlen korrekt sagen."},
+    {day:"Donnerstag", topic:"Die Uhr", goal:"Offizielle und alltägliche Uhrzeiten verstehen."},
+    {day:"Donnerstag", topic:"Tageszeiten und Wochentage", goal:"am Montag, morgens, mittags und abends verwenden."},
+    {day:"Donnerstag", topic:"Einen Termin vereinbaren", goal:"Tag und Uhrzeit vorschlagen, annehmen oder ablehnen."},
+
+    {day:"Freitag", topic:"Länder und Sprachen", goal:"Land, Sprache und Nationalität zusammenführen."},
+    {day:"Freitag", topic:"Biografien", goal:"Name, Alter, Land, Wohnort, Beruf und Hobbys finden."},
+    {day:"Freitag", topic:"Temporale Präpositionen", goal:"um, am, von, bis und für in Zeitangaben verwenden."},
+    {day:"Freitag", topic:"TE‑KA‑MO‑LO", goal:"Zeit, Grund, Art und Ort in einer Aussage ordnen."},
+    {day:"Freitag", topic:"Trennbare Verben", goal:"aufstehen, anfangen, einkaufen und aufmachen im Satz trennen."},
+
+    {day:"Samstag", topic:"Modalverben", goal:"können, müssen, dürfen, sollen, wollen, mögen und möchten im Präsens erkennen."},
+    {day:"Samstag", topic:"können · müssen · möchten", goal:"Fähigkeit, Verpflichtung und höflichen Wunsch ausdrücken."},
+    {day:"Samstag", topic:"Im Café", goal:"Getränke mit viel, wenig, mit, ohne, gern und lieber bestellen."},
+    {day:"Samstag", topic:"Freizeit", goal:"Mit gern und mögen über Aktivitäten und Vorlieben sprechen."},
+    {day:"Samstag", topic:"Sehen und Hören", goal:"Wörter aus Essen, Getränke, Wohnung und Hobbys Bildern zuordnen."},
+
+    {day:"Sonntag", topic:"Alphabet und Buchstabieren", goal:"Namen und Wörter auf Deutsch buchstabieren."},
+    {day:"Sonntag", topic:"Aussprache", goal:"ie/ei, au/eu/äu, sch/ch, sp/st, ig und tion unterscheiden."},
+    {day:"Sonntag", topic:"Lesen und Hörverstehen", goal:"Bekannte Wörter und Hauptinformationen in kurzen Texten erkennen."},
+    {day:"Sonntag", topic:"Wochenlied", goal:"Bekannte Wörter beim Hören markieren und einzelne Zeilen mitsingen."},
+    {day:"Sonntag", topic:"A1 Mini‑Test", goal:"Die Themen der Woche selbstständig überprüfen."}
+];
+
+const dayNames = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"];
+const storageKey = "deutschunterricht-wochenfortschritt-v1";
+let state = {checked:{}, name:"", week:"", notes:""};
+
+function loadState() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(storageKey));
+        if (saved && typeof saved === "object") state = {...state, ...saved, checked:saved.checked || {}};
+    } catch (error) { /* Die Seite funktioniert auch ohne gespeicherte Daten. */ }
+}
+
+function mondayValue() {
+    const date = new Date();
+    const day = date.getDay() || 7;
+    date.setDate(date.getDate() - day + 1);
+    const pad = value => String(value).padStart(2,"0");
+    return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
+}
+
+function saveState(message="Automatisch gespeichert. ✓") {
+    state.name = document.getElementById("studentName").value;
+    state.week = document.getElementById("weekStart").value;
+    state.notes = document.getElementById("weeklyNotes").value;
+    try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (error) {}
+    const status = document.getElementById("saveStatus");
+    status.textContent = message;
+    window.clearTimeout(saveState.timer);
+    saveState.timer = window.setTimeout(() => status.textContent = "", 1600);
+}
+
+function renderRows() {
+    document.getElementById("topicRows").innerHTML = weeklyTopics.map((item,index) => {
+        const id = `topic-${index}`;
+        const done = Boolean(state.checked[id]);
+        const dayIndex = dayNames.indexOf(item.day);
+        return `<tr class="${done ? "done" : ""}" data-topic-row="${id}">
+            <td><span class="day-badge day-${dayIndex}">${item.day}</span></td>
+            <td class="topic">${item.topic}</td>
+            <td class="goal">${item.goal}</td>
+            <td class="check-cell"><label class="check-wrap" aria-label="${item.topic} gelernt"><input type="checkbox" data-topic-check="${id}" ${done ? "checked" : ""}></label></td>
+        </tr>`;
+    }).join("");
+
+    document.querySelectorAll("[data-topic-check]").forEach(input => {
+        input.addEventListener("change", () => {
+            state.checked[input.dataset.topicCheck] = input.checked;
+            input.closest("tr").classList.toggle("done", input.checked);
+            updateProgress();
+            saveState();
+        });
+    });
+}
+
+function updateProgress() {
+    const completed = weeklyTopics.filter((item,index) => state.checked[`topic-${index}`]).length;
+    const percent = Math.round(completed / weeklyTopics.length * 100);
+    document.getElementById("progressNumber").textContent = `${percent}%`;
+    document.getElementById("progressFill").style.width = `${percent}%`;
+    document.querySelector("[role='progressbar']").setAttribute("aria-valuenow", percent);
+    document.getElementById("progressText").innerHTML = `<b>${completed}</b> von <b>${weeklyTopics.length}</b> Themen gelernt.`;
+    document.getElementById("daySummary").innerHTML = dayNames.map(day => {
+        const indexes = weeklyTopics.map((item,index) => item.day === day ? index : -1).filter(index => index >= 0);
+        const dayDone = indexes.filter(index => state.checked[`topic-${index}`]).length;
+        return `<div class="day-chip ${dayDone === indexes.length ? "complete" : ""}">${day}<br>${dayDone}/${indexes.length}</div>`;
+    }).join("");
+}
+
+loadState();
+document.getElementById("studentName").value = state.name;
+document.getElementById("weekStart").value = state.week || mondayValue();
+document.getElementById("weeklyNotes").value = state.notes;
+renderRows();
+updateProgress();
+
+["studentName","weekStart","weeklyNotes"].forEach(id => document.getElementById(id).addEventListener("input", () => saveState()));
+document.getElementById("printProgress").addEventListener("click", () => window.print());
+document.getElementById("resetProgress").addEventListener("click", () => {
+    if (!window.confirm("Möchtest du den Fortschritt für eine neue Woche löschen?")) return;
+    state = {checked:{}, name:document.getElementById("studentName").value, week:mondayValue(), notes:""};
+    document.getElementById("weekStart").value = state.week;
+    document.getElementById("weeklyNotes").value = "";
+    renderRows();
+    updateProgress();
+    saveState("Neue Woche vorbereitet. ✓");
+});
+</script>
+</body>
+</html>
